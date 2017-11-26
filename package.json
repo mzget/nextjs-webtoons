@@ -1,0 +1,22 @@
+{
+  "name": "next-cartoon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next"
+  },
+  "keywords": [],
+  "author": "nattapon.r <nattapon.r@live.com>",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^4.1.4",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1"
+  },
+  "devDependencies": {
+    "@types/next": "^2.4.6",
+    "@types/react": "^16.0.25"
+  }
+}

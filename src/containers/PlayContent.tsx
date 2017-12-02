@@ -1,7 +1,23 @@
 import * as React from "react";
+import { graphql, compose } from "react-apollo";
+
+import { List_QUERY, Content_QUERY } from "../queries/ProgramList";
 
 export interface IContent {
-    name: string; season: string; ep_name: string; src: string;
+    data: {
+        lists: Array<{ id: number, name: { th: string, en: string } }>,
+        contents: Array<{
+            id: string,
+            src: string,
+            seasonId: string,
+            epNo: string,
+            epName: { th: string, en: string },
+            name: { th: string, en: string },
+            season: { id: string, name: string, no: string, programId: number },
+        }>,
+        loading: boolean,
+        error: any,
+    };
 }
 
 class PlayContent extends React.Component<IContent, any> {
@@ -10,18 +26,35 @@ class PlayContent extends React.Component<IContent, any> {
     }
 
     public render() {
-        const { name, ep_name, season, src } = this.props;
+        const { loading, contents } = this.props.data;
+
+        console.log(this.props.data);
+
         return (
             <div>
-                <p>{name}</p>
-                <p>{season}</p>
-                <p>{ep_name}</p>
-                <video width="320" height="240" controls src={src} >
-                    Sorry, your browser doesn't support embedded videos.
-                </video>
+                {
+                    (loading) ?
+                        <p>{loading}</p>
+                        :
+                        <div>
+                            {/* <p>{`${data.lists[0].name.th} ตอนที่ ${data.lists[0].id}`}</p> */}
+                            <p>{`ภาค ${contents[0].season.name}`}</p>
+                            <p>{`ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`}</p>
+                            <video width={"100%"} controls src={contents[0].src} >
+                                Sorry, your browser doesn't support embedded videos.
+                                </video>
+                        </div>
+                }
             </div>
         );
     }
 }
 
-export default PlayContent;
+const PlayContentWithData = compose(
+    graphql(List_QUERY),
+    graphql(Content_QUERY, {
+        options: { variables: { seasonId: "1" } },
+    }),
+)(PlayContent);
+
+export default PlayContentWithData;

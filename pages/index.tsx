@@ -1,17 +1,18 @@
 // This is the Link API
 import Link from "next/link";
 import * as React from "react";
+import withData from "../lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";
 
-const Index = () => (
+const Index = (props: any) => (
     <div>
+        {console.log(props)}
         <Link href="/about">
             <button>About Page</button>
         </Link>
-        <p>Hello Next.js</p>
-        <PlayContent name="one pieces" season={"18"} ep_name={"18"} />
+        <PlayContent />
     </div>
 );
 
-export default Index;
+export default withData((props: any) => <Index {...props} />);

@@ -28,23 +28,16 @@ import Link from "next/link";
 //     process.tapEventInjected = true;
 // }
 
-const styles = {
-    container: {
-        textAlign: "center",
-        paddingTop: 200,
-    },
-};
-
 const muiTheme = {
+    fontFamily: "Roboto, sans-serif",
     palette: {
-        textColor: white,
+        textColor: darkBlack,
     },
     toolbar: {
         color: white,
         hoverColor: white,
         backgroundColor: indigo500,
     },
-    ...darkBaseTheme,
 } as MuiTheme;
 
 interface IMaterialUICompState {

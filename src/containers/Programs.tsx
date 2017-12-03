@@ -3,6 +3,8 @@ import { compose, graphql } from "react-apollo";
 
 import { List_QUERY } from "../queries/ProgramList";
 
+import SeasonsList from "../components/SeasonsList";
+
 interface IProgramsProps {
     data: {
         loading: boolean,
@@ -16,7 +18,10 @@ class Programs extends React.Component<IProgramsProps, any> {
 
         return (
             <div>
-                <p>{`รายชื่อตอน ${data.lists[0].name.th} ${data.lists[0].name.en.toUpperCase()}`}</p>
+                <p>
+                    <strong>{`รายชื่อตอน ${data.lists[0].name.th} ${data.lists[0].name.en.toUpperCase()}`}</strong>
+                </p>
+                <SeasonsList />
             </div>
         );
     }

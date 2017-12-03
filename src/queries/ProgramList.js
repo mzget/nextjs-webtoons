@@ -30,3 +30,19 @@ exports.Content_QUERY = graphql_tag_1.default `query contents($seasonId : String
     }
   }
 }`;
+exports.Seasons_List = graphql_tag_1.default `query seasons($programId : Int!) {
+  seasons(programId: $programId) {
+    id
+    no
+    name
+    programId
+    program {
+      id
+      name {
+        th
+        en
+      }
+    }
+  }
+}
+`;

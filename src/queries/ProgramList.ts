@@ -30,3 +30,20 @@ export const Content_QUERY = gql`query contents($seasonId : String!) {
     }
   }
 }`;
+
+export const Seasons_List = gql`query seasons($programId : Int!) {
+  seasons(programId: $programId) {
+    id
+    no
+    name
+    programId
+    program {
+      id
+      name {
+        th
+        en
+      }
+    }
+  }
+}
+`;

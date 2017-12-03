@@ -1,11 +1,14 @@
 import * as React from "react";
 import RaisedButton from "material-ui/RaisedButton";
 import Dialog from "material-ui/Dialog";
-import { deepOrange500 } from "material-ui/styles/colors";
+import { indigo900, indigo500, indigo50, darkBlack, darkWhite, white } from "material-ui/styles/colors";
 import FlatButton from "material-ui/FlatButton";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 // import injectTapEventPlugin from "react-tap-event-plugin";
+
+import darkBaseTheme from "material-ui/styles/baseThemes/darkBaseTheme";
+import lightBaseTheme from "material-ui/styles/baseThemes/lightBaseTheme";
 import { Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle } from "material-ui/Toolbar";
 import MenuItem from "material-ui/MenuItem";
 import DropDownMenu from "material-ui/DropDownMenu";
@@ -13,6 +16,10 @@ import FontIcon from "material-ui/FontIcon";
 import IconMenu from "material-ui/IconMenu";
 import IconButton from "material-ui/IconButton";
 import NavigationExpandMoreIcon from "material-ui/svg-icons/navigation/expand-more";
+import { MuiTheme } from "material-ui/styles";
+
+// This is the Link API
+import Link from "next/link";
 
 // Make sure react-tap-event-plugin only gets injected once
 // Needed for material-ui
@@ -30,9 +37,15 @@ const styles = {
 
 const muiTheme = {
     palette: {
-        accent1Color: deepOrange500,
+        textColor: white,
     },
-};
+    toolbar: {
+        color: white,
+        hoverColor: white,
+        backgroundColor: indigo500,
+    },
+    ...darkBaseTheme,
+} as MuiTheme;
 
 interface IMaterialUICompState {
     open: boolean;
@@ -90,10 +103,12 @@ const WithMaterialUI = (ReactComponent) => {
             );
 
             return (
-                <MuiThemeProvider muiTheme={getMuiTheme({ userAgent, ...muiTheme })}>
+                <MuiThemeProvider muiTheme={getMuiTheme({ ...muiTheme, userAgent })}>
                     <div>
                         <Toolbar>
                             <ToolbarGroup firstChild={true}>
+                                <ToolbarTitle text="Home" />
+                                <ToolbarSeparator />
                                 <DropDownMenu value={this.state.value} onChange={this.handleDropDownChange}>
                                     <MenuItem value={1} primaryText="All Broadcasts" />
                                     <MenuItem value={2} primaryText="All Voice" />
@@ -105,20 +120,10 @@ const WithMaterialUI = (ReactComponent) => {
                                 </DropDownMenu>
                             </ToolbarGroup>
                             <ToolbarGroup>
-                                <ToolbarTitle text="Options" />
-                                <FontIcon className="muidocs-icon-custom-sort" />
                                 <ToolbarSeparator />
-                                <RaisedButton label="Create Broadcast" primary={true} />
-                                <IconMenu
-                                    iconButtonElement={
-                                        <IconButton touch={true}>
-                                            <NavigationExpandMoreIcon />
-                                        </IconButton>
-                                    }
-                                >
-                                    <MenuItem primaryText="Download" />
-                                    <MenuItem primaryText="More Info" />
-                                </IconMenu>
+                                <Link href="/about">
+                                    <FlatButton label="About" />
+                                </Link>
                             </ToolbarGroup>
                         </Toolbar>
                         <ReactComponent {...this.props} />

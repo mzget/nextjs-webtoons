@@ -38,7 +38,7 @@ class PlayContent extends React.Component<IContent, any> {
                         :
                         <div>
                             {/* <p>{`${data.lists[0].name.th} ตอนที่ ${data.lists[0].id}`}</p> */}
-                            <p>{`ภาค ${contents[0].season.name}`}</p>
+                            <p>{`ภาค ${contents[0].season.no} ${contents[0].season.name}`}</p>
                             <p>{`ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`}</p>
                             <video width={"100%"} controls src={contents[0].src} >
                                 Sorry, your browser doesn't support embedded videos.

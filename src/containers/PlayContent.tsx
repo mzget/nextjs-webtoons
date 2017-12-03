@@ -37,7 +37,7 @@ class PlayContent extends React.Component<IContent, any> {
                         <p>{loading}</p>
                         :
                         <div>
-                            {/* <p>{`${data.lists[0].name.th} ตอนที่ ${data.lists[0].id}`}</p> */}
+                            <p>{`${contents[0].name.th}`}</p>
                             <p>{`ภาค ${contents[0].season.no} ${contents[0].season.name}`}</p>
                             <p>{`ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`}</p>
                             <video width={"100%"} controls src={contents[0].src} >

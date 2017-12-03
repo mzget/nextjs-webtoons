@@ -107,7 +107,9 @@ const WithMaterialUI = (ReactComponent) => {
                     <div>
                         <Toolbar>
                             <ToolbarGroup firstChild={true}>
-                                <ToolbarTitle text="Home" />
+                                <Link href="/">
+                                    <FlatButton label="Home" />
+                                </Link>
                                 <ToolbarSeparator />
                                 <DropDownMenu value={this.state.value} onChange={this.handleDropDownChange}>
                                     <MenuItem value={1} primaryText="All Broadcasts" />
@@ -120,7 +122,6 @@ const WithMaterialUI = (ReactComponent) => {
                                 </DropDownMenu>
                             </ToolbarGroup>
                             <ToolbarGroup>
-                                <ToolbarSeparator />
                                 <Link href="/about">
                                     <FlatButton label="About" />
                                 </Link>

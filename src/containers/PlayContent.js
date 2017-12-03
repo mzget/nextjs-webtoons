@@ -14,6 +14,7 @@ class PlayContent extends React.Component {
             React.createElement("p", null, loading)
             :
                 React.createElement("div", null,
+                    React.createElement("p", null, `${contents[0].name.th}`),
                     React.createElement("p", null, `ภาค ${contents[0].season.no} ${contents[0].season.name}`),
                     React.createElement("p", null, `ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`),
                     React.createElement("video", { width: "100%", controls: true, src: contents[0].src }, "Sorry, your browser doesn't support embedded videos."))));

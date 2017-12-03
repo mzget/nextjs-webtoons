@@ -5,6 +5,8 @@ import { List_QUERY, Content_QUERY } from "../queries/ProgramList";
 
 export interface IContent {
     data: {
+        loading: boolean,
+        error: any,
         lists: Array<{ id: number, name: { th: string, en: string } }>,
         contents: Array<{
             id: string,
@@ -15,8 +17,6 @@ export interface IContent {
             name: { th: string, en: string },
             season: { id: string, name: string, no: string, programId: number },
         }>,
-        loading: boolean,
-        error: any,
     };
 }
 

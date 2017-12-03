@@ -18,7 +18,7 @@ class Programs extends React.Component<IProgramsProps, any> {
 
         return (
             <div>
-                <p>
+                <p style={{ marginLeft: 10 }}>
                     <strong>{`รายชื่อตอน ${data.lists[0].name.th} ${data.lists[0].name.en.toUpperCase()}`}</strong>
                 </p>
                 <SeasonsList />

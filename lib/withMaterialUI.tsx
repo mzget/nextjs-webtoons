@@ -1,7 +1,7 @@
 import * as React from "react";
 import RaisedButton from "material-ui/RaisedButton";
 import Dialog from "material-ui/Dialog";
-import { indigo900, indigo500, indigo50, darkBlack, darkWhite, white } from "material-ui/styles/colors";
+import { indigo900, indigo500, indigo50, darkBlack, darkWhite, white, grey50 } from "material-ui/styles/colors";
 import FlatButton from "material-ui/FlatButton";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
@@ -31,7 +31,7 @@ import Link from "next/link";
 const muiTheme = {
     fontFamily: "Roboto, sans-serif",
     palette: {
-        textColor: darkBlack,
+        // textColor: darkWhite,
     },
     toolbar: {
         color: white,
@@ -97,14 +97,14 @@ const WithMaterialUI = (ReactComponent) => {
 
             return (
                 <MuiThemeProvider muiTheme={getMuiTheme({ ...muiTheme, userAgent })}>
-                    <div>
+                    <div style={{ backgroundColor: grey50 }}>
                         <Toolbar>
                             <ToolbarGroup firstChild={true}>
                                 <Link href="/">
                                     <FlatButton label="Home" />
                                 </Link>
                                 <ToolbarSeparator />
-                                <DropDownMenu value={this.state.value} onChange={this.handleDropDownChange}>
+                                {/* <DropDownMenu value={this.state.value} onChange={this.handleDropDownChange}>
                                     <MenuItem value={1} primaryText="All Broadcasts" />
                                     <MenuItem value={2} primaryText="All Voice" />
                                     <MenuItem value={3} primaryText="All Text" />
@@ -112,7 +112,7 @@ const WithMaterialUI = (ReactComponent) => {
                                     <MenuItem value={5} primaryText="Complete Text" />
                                     <MenuItem value={6} primaryText="Active Voice" />
                                     <MenuItem value={7} primaryText="Active Text" />
-                                </DropDownMenu>
+                                </DropDownMenu> */}
                             </ToolbarGroup>
                             <ToolbarGroup>
                                 <Link href="/about">

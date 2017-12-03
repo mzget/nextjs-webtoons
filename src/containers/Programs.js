@@ -8,7 +8,7 @@ class Programs extends React.Component {
     render() {
         const { data } = this.props;
         return (React.createElement("div", null,
-            React.createElement("p", null,
+            React.createElement("p", { style: { marginLeft: 10 } },
                 React.createElement("strong", null, `รายชื่อตอน ${data.lists[0].name.th} ${data.lists[0].name.en.toUpperCase()}`)),
             React.createElement(SeasonsList_1.default, null)));
     }

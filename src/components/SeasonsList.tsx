@@ -4,10 +4,20 @@ import { compose, graphql } from "react-apollo";
 import { List, ListItem } from "material-ui/List";
 import Subheader from "material-ui/Subheader";
 
-import { Seasons_List } from "../queries/ProgramList";
+import { Seasons_List, Content_QUERY } from "../queries/ProgramList";
+
+function getLists({ contents }: ISeasonsProps, seasonId: string): JSX.Element[] {
+    const seasons = contents.contents.filter((content) => content.seasonId === seasonId);
+    return seasons.map((content, id) =>
+        <ListItem
+            key={id}
+            primaryText={content.epName.th}
+        />,
+    );
+}
 
 interface ISeasonsProps {
-    data: {
+    seasons: {
         loading: boolean,
         error: any,
         seasons: Array<{
@@ -24,39 +34,39 @@ interface ISeasonsProps {
             },
         }>,
     };
+    contents: {
+        loading: boolean,
+        error: any,
+        lists: Array<{ id: number, name: { th: string, en: string } }>,
+        contents: Array<{
+            id: string,
+            src: string,
+            seasonId: string,
+            epNo: string,
+            epName: { th: string, en: string },
+            name: { th: string, en: string },
+            season: { id: string, name: string, no: string, programId: number },
+        }>,
+    };
 }
 
 class SeasonsList extends React.Component<ISeasonsProps, any> {
     render() {
-        const { seasons, loading, error } = this.props.data;
+        const { contents } = this.props.contents;
+        const { seasons } = this.props.seasons;
 
         console.log(this.props);
 
         return (
             <List>
                 {
-                    seasons.map((season) =>
+                    !!seasons && seasons.map((season) =>
                         <ListItem
                             key={season.no}
                             primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
                             initiallyOpen={false}
                             primaryTogglesNestedList={true}
-                            nestedItems={[
-                                <ListItem
-                                    key={1}
-                                    primaryText="Starred"
-                                />,
-                                <ListItem
-                                    key={2}
-                                    primaryText="Sent Mail"
-                                    disabled={true}
-                                />,
-                                <ListItem
-                                    key={3}
-                                    primaryText="Inbox"
-                                    onNestedListToggle={this.handleNestedListToggle}
-                                />,
-                            ]}
+                            nestedItems={getLists(this.props, season.id)}
                         />,
                     )
                 }
@@ -67,7 +77,11 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
 
 const SeasonsListWithData = compose(
     graphql(Seasons_List, {
+        name: "seasons",
         options: { variables: { programId: 1 } },
+    }),
+    graphql(Content_QUERY, {
+        name: "contents",
     }),
 )(SeasonsList);
 

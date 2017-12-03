@@ -8,7 +8,7 @@ export const List_QUERY = gql`query Programs {
     }
 }`;
 
-export const Content_QUERY = gql`query contents($seasonId : String!) {
+export const Content_QUERY = gql`query contents($seasonId : String) {
   contents(seasonId: $seasonId) {
     id
     name {

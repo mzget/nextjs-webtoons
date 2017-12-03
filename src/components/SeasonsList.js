@@ -6,7 +6,7 @@ const List_1 = require("material-ui/List");
 const ProgramList_1 = require("../queries/ProgramList");
 function getLists({ contents }, seasonId) {
     const seasons = contents.contents.filter((content) => content.seasonId === seasonId);
-    return seasons.map((content, id) => React.createElement(List_1.ListItem, { key: id, primaryText: content.epName.th }));
+    return seasons.map((content, id) => React.createElement(List_1.ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th }));
 }
 class SeasonsList extends React.Component {
     render() {

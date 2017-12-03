@@ -11,7 +11,8 @@ function getLists({ contents }: ISeasonsProps, seasonId: string): JSX.Element[] 
     return seasons.map((content, id) =>
         <ListItem
             key={id}
-            primaryText={content.epName.th}
+            primaryText={`ตอนที่ ${content.epNo}`}
+            secondaryText={content.epName.th}
         />,
     );
 }

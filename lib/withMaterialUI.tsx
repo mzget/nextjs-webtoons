@@ -97,7 +97,7 @@ const WithMaterialUI = (ReactComponent) => {
 
             return (
                 <MuiThemeProvider muiTheme={getMuiTheme({ ...muiTheme, userAgent })}>
-                    <div style={{ backgroundColor: grey50 }}>
+                    <div style={{ backgroundColor: grey50, margin: -8, height: "100vh", overflowY: "hidden" }} >
                         <Toolbar>
                             <ToolbarGroup firstChild={true}>
                                 <Link href="/">
@@ -120,7 +120,9 @@ const WithMaterialUI = (ReactComponent) => {
                                 </Link>
                             </ToolbarGroup>
                         </Toolbar>
-                        <ReactComponent {...this.props} />
+                        <div style={{ height: "calc(100vh - 56px)", overflowY: "auto" }}>
+                            <ReactComponent {...this.props} />
+                        </div>
                     </div>
                 </MuiThemeProvider>
             );

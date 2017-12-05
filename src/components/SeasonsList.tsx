@@ -1,18 +1,20 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
+import Router from "next/router";
 
 import { List, ListItem } from "material-ui/List";
 import Subheader from "material-ui/Subheader";
 
 import { Seasons_List, Content_QUERY } from "../queries/ProgramList";
 
-function getLists({ contents }: ISeasonsProps, seasonId: string): JSX.Element[] {
+function getLists({ contents }: ISeasonsProps, seasonId: string, onClickItem: (data: any) => void): JSX.Element[] {
     const seasons = contents.contents.filter((content) => content.seasonId === seasonId);
     return seasons.map((content, id) =>
         <ListItem
             key={id}
             primaryText={`ตอนที่ ${content.epNo}`}
             secondaryText={content.epName.th}
+            onClick={() => onClickItem(content.id)}
         />,
     );
 }
@@ -52,6 +54,18 @@ interface ISeasonsProps {
 }
 
 class SeasonsList extends React.Component<ISeasonsProps, any> {
+    componentWillMount() {
+        this.onClickItem = this.onClickItem.bind(this);
+    }
+
+    onClickItem(data: any) {
+        console.log(data);
+        Router.push({
+            pathname: "/play",
+            query: { ep: `${data}` },
+        });
+    }
+
     render() {
         const { contents } = this.props.contents;
         const { seasons } = this.props.seasons;
@@ -67,7 +81,7 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
                             primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
                             initiallyOpen={false}
                             primaryTogglesNestedList={true}
-                            nestedItems={getLists(this.props, season.id)}
+                            nestedItems={getLists(this.props, season.id, this.onClickItem)}
                         />,
                     )
                 }

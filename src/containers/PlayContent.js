@@ -8,19 +8,20 @@ class PlayContent extends React.Component {
         super(props);
     }
     render() {
-        const { loading, contents } = this.props.data;
-        console.log(this.props.data);
+        const { loading, content } = this.props.data;
+        const { query } = this.props.url;
+        console.log(loading, content);
         return (React.createElement("div", null, (loading) ?
             React.createElement("p", null, loading)
             :
                 React.createElement("div", null,
-                    React.createElement("p", null, `${contents[0].name.th}`),
-                    React.createElement("p", null, `ภาค ${contents[0].season.no} ${contents[0].season.name}`),
-                    React.createElement("p", null, `ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`),
-                    React.createElement("video", { width: "100%", controls: true, src: contents[0].src }, "Sorry, your browser doesn't support embedded videos."))));
+                    React.createElement("p", null, `ซีซั่น ${content.season.no} ${content.season.name}`),
+                    React.createElement("p", null, `ตอนที่ ${content.epNo} ${content.epName.th}`),
+                    React.createElement("video", { width: "100%", controls: true, src: content.src }, "Sorry, your browser doesn't support embedded videos."))));
     }
 }
-const PlayContentWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.List_QUERY), react_apollo_1.graphql(ProgramList_1.Content_QUERY, {
-    options: { variables: { seasonId: "1" } },
+const PlayContentWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.Content_QUERY, {
+    // options: { variables: { seasonId: "1" } },
+    options: ({ url }) => ({ variables: { episode: url.query.ep } }),
 }))(PlayContent);
 exports.default = PlayContentWithData;

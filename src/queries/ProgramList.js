@@ -8,8 +8,30 @@ exports.List_QUERY = graphql_tag_1.default `query Programs {
          name {th en}
     }
 }`;
-exports.Content_QUERY = graphql_tag_1.default `query contents($seasonId : String) {
+exports.Contents_QUERY = graphql_tag_1.default `query contents($seasonId : String) {
   contents(seasonId: $seasonId) {
+    id
+    name {
+      th
+      en
+    }
+    seasonId
+    epNo
+    epName {
+      th
+      en
+    }
+    src
+    season {
+    id
+    name
+    no
+    programId
+    }
+  }
+}`;
+exports.Content_QUERY = graphql_tag_1.default `query content($episode : Int!) {
+  content(episode: $episode) {
     id
     name {
       th

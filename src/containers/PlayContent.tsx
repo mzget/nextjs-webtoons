@@ -1,14 +1,17 @@
 import * as React from "react";
 import { graphql, compose } from "react-apollo";
 
-import { List_QUERY, Content_QUERY } from "../queries/ProgramList";
+import { Content_QUERY } from "../queries/ProgramList";
 
 export interface IContent {
+    url: {
+        query: { ep: string },
+    };
     data: {
         loading: boolean,
         error: any,
         lists: Array<{ id: number, name: { th: string, en: string } }>,
-        contents: Array<{
+        content: {
             id: string,
             src: string,
             seasonId: string,
@@ -16,7 +19,7 @@ export interface IContent {
             epName: { th: string, en: string },
             name: { th: string, en: string },
             season: { id: string, name: string, no: string, programId: number },
-        }>,
+        },
     };
 }
 
@@ -26,10 +29,10 @@ class PlayContent extends React.Component<IContent, any> {
     }
 
     public render() {
-        const { loading, contents } = this.props.data;
+        const { loading, content } = this.props.data;
+        const { query } = this.props.url;
 
-        console.log(this.props.data);
-
+        console.log(loading, content);
         return (
             <div>
                 {
@@ -37,10 +40,9 @@ class PlayContent extends React.Component<IContent, any> {
                         <p>{loading}</p>
                         :
                         <div>
-                            <p>{`${contents[0].name.th}`}</p>
-                            <p>{`ภาค ${contents[0].season.no} ${contents[0].season.name}`}</p>
-                            <p>{`ตอนที่ ${contents[0].epNo} ${contents[0].epName.th}`}</p>
-                            <video width={"100%"} controls src={contents[0].src} >
+                            <p>{`ซีซั่น ${content.season.no} ${content.season.name}`}</p>
+                            <p>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
+                            <video width={"100%"} controls src={content.src} >
                                 Sorry, your browser doesn't support embedded videos.
                                 </video>
                         </div>
@@ -51,9 +53,9 @@ class PlayContent extends React.Component<IContent, any> {
 }
 
 const PlayContentWithData = compose(
-    graphql(List_QUERY),
     graphql(Content_QUERY, {
-        options: { variables: { seasonId: "1" } },
+        // options: { variables: { seasonId: "1" } },
+        options: ({ url }: any) => ({ variables: { episode: url.query.ep } }),
     }),
 )(PlayContent);
 

@@ -8,8 +8,31 @@ export const List_QUERY = gql`query Programs {
     }
 }`;
 
-export const Content_QUERY = gql`query contents($seasonId : String) {
+export const Contents_QUERY = gql`query contents($seasonId : String) {
   contents(seasonId: $seasonId) {
+    id
+    name {
+      th
+      en
+    }
+    seasonId
+    epNo
+    epName {
+      th
+      en
+    }
+    src
+    season {
+    id
+    name
+    no
+    programId
+    }
+  }
+}`;
+
+export const Content_QUERY = gql`query content($episode : Int!) {
+  content(episode: $episode) {
     id
     name {
       th

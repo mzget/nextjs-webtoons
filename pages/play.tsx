@@ -6,7 +6,7 @@ import PlayContent from "../src/containers/PlayContent";
 
 const Index = (props: any) => (
     <div>
-        <PlayContent />
+        <PlayContent {...props} />
     </div>
 );
 

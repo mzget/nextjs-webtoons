@@ -5,7 +5,7 @@ import Router from "next/router";
 import { List, ListItem } from "material-ui/List";
 import Subheader from "material-ui/Subheader";
 
-import { Seasons_List, Content_QUERY } from "../queries/ProgramList";
+import { Seasons_List, Contents_QUERY } from "../queries/ProgramList";
 
 function getLists({ contents }: ISeasonsProps, seasonId: string, onClickItem: (data: any) => void): JSX.Element[] {
     const seasons = contents.contents.filter((content) => content.seasonId === seasonId);
@@ -14,7 +14,7 @@ function getLists({ contents }: ISeasonsProps, seasonId: string, onClickItem: (d
             key={id}
             primaryText={`ตอนที่ ${content.epNo}`}
             secondaryText={content.epName.th}
-            onClick={() => onClickItem(content.id)}
+            onClick={() => onClickItem(content.epNo)}
         />,
     );
 }
@@ -95,7 +95,7 @@ const SeasonsListWithData = compose(
         name: "seasons",
         options: { variables: { programId: 1 } },
     }),
-    graphql(Content_QUERY, {
+    graphql(Contents_QUERY, {
         name: "contents",
     }),
 )(SeasonsList);

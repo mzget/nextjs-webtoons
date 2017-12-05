@@ -7,7 +7,7 @@ const List_1 = require("material-ui/List");
 const ProgramList_1 = require("../queries/ProgramList");
 function getLists({ contents }, seasonId, onClickItem) {
     const seasons = contents.contents.filter((content) => content.seasonId === seasonId);
-    return seasons.map((content, id) => React.createElement(List_1.ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th, onClick: () => onClickItem(content.id) }));
+    return seasons.map((content, id) => React.createElement(List_1.ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th, onClick: () => onClickItem(content.epNo) }));
 }
 class SeasonsList extends React.Component {
     componentWillMount() {
@@ -30,7 +30,7 @@ class SeasonsList extends React.Component {
 const SeasonsListWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.Seasons_List, {
     name: "seasons",
     options: { variables: { programId: 1 } },
-}), react_apollo_1.graphql(ProgramList_1.Content_QUERY, {
+}), react_apollo_1.graphql(ProgramList_1.Contents_QUERY, {
     name: "contents",
 }))(SeasonsList);
 exports.default = SeasonsListWithData;

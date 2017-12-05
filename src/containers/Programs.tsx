@@ -16,7 +16,6 @@ class Programs extends React.Component<IProgramsProps, any> {
     render() {
         const { programs } = this.props;
         const program = programs.lists[0];
-        console.log("Programs", programs.loading, program);
 
         return (
             <div>

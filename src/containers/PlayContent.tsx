@@ -32,7 +32,6 @@ class PlayContent extends React.Component<IContent, any> {
         const { loading, content } = this.props.data;
         const { query } = this.props.url;
 
-        console.log(loading, content);
         return (
             <div>
                 {
@@ -40,11 +39,15 @@ class PlayContent extends React.Component<IContent, any> {
                         <p>{loading}</p>
                         :
                         <div>
-                            <p>{`ซีซั่น ${content.season.no} ${content.season.name}`}</p>
-                            <p>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
-                            <video width={"100%"} controls src={content.src} >
-                                Sorry, your browser doesn't support embedded videos.
+                            <p style={{ marginLeft: 12 }}>
+                                <strong>{`ซีซั่น ${content.season.no} ${content.season.name}`}</strong>
+                            </p>
+                            <p style={{ marginLeft: 12 }}>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
+                            <span>
+                                <video width={"100%"} controls src={content.src} >
+                                    Sorry, your browser doesn't support embedded videos.
                                 </video>
+                            </span>
                         </div>
                 }
             </div>

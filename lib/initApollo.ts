@@ -13,7 +13,7 @@ if (!process.browser) {
 
 function create(initialState: any) {
   const link = new HttpLink({
-    uri: "http://localhost:4000/api/graphql",
+    uri: "http://chitchats.ga:4000/api/graphql",
     credentials: "same-origin",
     // fetch,
   });

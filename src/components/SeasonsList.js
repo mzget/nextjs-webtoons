@@ -14,7 +14,6 @@ class SeasonsList extends React.Component {
         this.onClickItem = this.onClickItem.bind(this);
     }
     onClickItem(data) {
-        console.log(data);
         router_1.default.push({
             pathname: "/play",
             query: { ep: `${data}` },
@@ -23,7 +22,6 @@ class SeasonsList extends React.Component {
     render() {
         const { contents } = this.props.contents;
         const { seasons } = this.props.seasons;
-        console.log(this.props);
         return (React.createElement(List_1.List, null, (this.props.contents.loading || this.props.seasons.loading) ? React.createElement("p", null, `Loading...`) :
             !!seasons && seasons.map((season) => React.createElement(List_1.ListItem, { key: season.no, primaryText: `${season.program.name.th} ซีซั่น ${season.no} ${season.name}`, initiallyOpen: false, primaryTogglesNestedList: true, nestedItems: getLists(this.props, season.no, this.onClickItem) }))));
     }

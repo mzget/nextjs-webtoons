@@ -59,7 +59,6 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
     }
 
     onClickItem(data: any) {
-        console.log(data);
         Router.push({
             pathname: "/play",
             query: { ep: `${data}` },
@@ -69,8 +68,6 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
     render() {
         const { contents } = this.props.contents;
         const { seasons } = this.props.seasons;
-
-        console.log(this.props);
 
         return (
             <List>

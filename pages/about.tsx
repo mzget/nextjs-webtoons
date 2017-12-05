@@ -3,7 +3,9 @@ import WithMaterialUI from "../lib/withMaterialUI";
 
 export const About = () => (
     <div>
-        <p>This is the about page</p>
+        <p style={{ marginLeft: 12 }}>
+            <strong>{`วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`}</strong>
+        </p>
     </div>
 );
 

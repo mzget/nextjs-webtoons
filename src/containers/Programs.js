@@ -8,7 +8,6 @@ class Programs extends React.Component {
     render() {
         const { programs } = this.props;
         const program = programs.lists[0];
-        console.log("Programs", programs.loading, program);
         return (React.createElement("div", null, (programs.loading) ? React.createElement("p", null, `Loading...`) :
             React.createElement("div", null,
                 React.createElement("p", { style: { marginLeft: 10 } },

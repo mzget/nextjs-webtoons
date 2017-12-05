@@ -6,23 +6,25 @@ import { List_QUERY } from "../queries/ProgramList";
 import SeasonsList from "../components/SeasonsList";
 
 interface IProgramsProps {
-    data: {
+    programs: {
         loading: boolean,
         error: any,
-        lists: Array<{ id: number, name: { th: string, en: string } }>,
+        lists: Array<{ _id: string, name: { th: string, en: string } }>,
     };
 }
 class Programs extends React.Component<IProgramsProps, any> {
     render() {
-        const { data } = this.props;
+        const { programs } = this.props;
+        const program = programs.lists[0];
+        console.log("Programs", programs.loading, program);
 
         return (
             <div>
                 {
-                    (data.loading) ? <p>{`Loading...`}</p> :
+                    (programs.loading) ? <p>{`Loading...`}</p> :
                         <div>
                             <p style={{ marginLeft: 10 }}>
-                                <strong>{`รายชื่อตอน ${data.lists[0].name.th} ${data.lists[0].name.en.toUpperCase()}`}</strong>
+                                <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
                             </p>
                             <SeasonsList />
                         </div>
@@ -33,7 +35,7 @@ class Programs extends React.Component<IProgramsProps, any> {
 }
 
 const ProgramsWithData = compose(
-    graphql(List_QUERY),
+    graphql(List_QUERY, { name: "programs" }),
 )(Programs);
 
 export default ProgramsWithData;

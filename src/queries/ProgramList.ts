@@ -1,67 +1,72 @@
 import gql from "graphql-tag";
 
 // here we create a query opearation
-export const List_QUERY = gql`query Programs {
+export const List_QUERY = gql`query programs {
     lists {
-         id
-         name {th en}
+      _id
+      name {
+        th
+        en
+      }
     }
 }`;
 
-export const Contents_QUERY = gql`query contents($seasonId : String) {
-  contents(seasonId: $seasonId) {
-    id
+export const Contents_QUERY = gql`query contents($programId: String!, $seasonId : String) {
+  contents(programId: $programId, seasonId: $seasonId) {
+    _id
     name {
       th
       en
     }
-    seasonId
     epNo
     epName {
       th
       en
     }
     src
+    seasonId
     season {
-    id
-    name
-    no
-    programId
+      _id
+      name
+      no
+      programId
     }
+    programId
   }
 }`;
 
 export const Content_QUERY = gql`query content($episode : Int!) {
   content(episode: $episode) {
-    id
+    _id
     name {
       th
       en
     }
-    seasonId
     epNo
     epName {
       th
       en
     }
     src
+    seasonId
     season {
-    id
-    name
-    no
-    programId
+      _id
+      name
+      no
+      programId
     }
+    programId
   }
 }`;
 
-export const Seasons_List = gql`query seasons($programId : Int!) {
+export const Seasons_List = gql`query seasons($programId : String!) {
   seasons(programId: $programId) {
-    id
+    _id
     no
     name
     programId
     program {
-      id
+      _id
       name {
         th
         en

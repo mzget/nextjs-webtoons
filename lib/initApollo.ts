@@ -5,8 +5,10 @@ import fetch from "node-fetch";
 
 let apolloClient = null as ApolloClient<NormalizedCacheObject> | null;
 
+// if (process.env.NODE_ENV !== "development") {
+// }
+console.log("browser", process.browser, process.env.NODE_ENV);
 // Polyfill fetch() on the server (used by apollo-client)
-console.log("browser", process.browser);
 if (!process.browser) {
   global.fetch = fetch;
 }

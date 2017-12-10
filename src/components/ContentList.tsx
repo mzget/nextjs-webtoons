@@ -3,7 +3,7 @@ import { List, ListItem } from "material-ui/List";
 import { compose, graphql } from "react-apollo";
 
 import { Contents_QUERY } from "../queries/ProgramList";
-import { IContentProps, IRouteProps } from "../structs/Structs";
+import { IContentProps, IRouteProps } from "../utils/structs";
 
 
 interface ISeasonPageProps extends IContentProps, IRouteProps {

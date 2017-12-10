@@ -2,6 +2,7 @@ import * as React from "react";
 import { compose, graphql } from "react-apollo";
 import Flexbox from "flexbox-react";
 
+import { getScreen, SMALL } from "../utils/responsiveHelper";
 import { List_QUERY } from "../queries/ProgramList";
 
 import SeasonsList from "../components/SeasonsList";
@@ -17,21 +18,20 @@ class Programs extends React.Component<IProgramsProps, any> {
     render() {
         const { programs } = this.props;
         const program = programs.lists[0];
+        const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
 
         return (
-            <Flexbox flexDirection="row" justifyContent="center" minHeight="100vh">
-                <Flexbox style={{ maxWidth: 600 }}>
-                    {
-                        (programs.loading) ? <p>{`Loading...`}</p> :
-                            <div>
-                                <p style={{ marginLeft: 10 }}>
-                                    <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
-                                </p>
-                                <SeasonsList />
-                            </div>
-                    }
-                </Flexbox>
-            </Flexbox>
+            <div id="program" style={{ overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" }}  >
+                {
+                    (programs.loading) ? <p>{`Loading...`}</p> :
+                        <div>
+                            <p style={{ marginLeft: 10 }}>
+                                <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
+                            </p>
+                            <SeasonsList />
+                        </div>
+                }
+            </div>
         );
     }
 }

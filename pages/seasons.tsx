@@ -4,7 +4,9 @@ import withData from "../lib/withData";
 import { List, ListItem } from "material-ui/List";
 
 import Router from "next/router";
+import Flexbox from "flexbox-react";
 
+import { getScreen } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/structs/Structs";
 import ContentList from "../src/components/ContentList";
 
@@ -22,13 +24,15 @@ class Seasons extends React.Component<ISeasonPageProps, any> {
         });
     }
 
-
-
     render() {
         return (
-            <div>
-                <ContentList {...this.props} onClickContent={this.onClickItem} />
-            </div>
+            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
+                <Flexbox />
+                <div id="seasons">
+                    <ContentList {...this.props} onClickContent={this.onClickItem} />
+                </div>
+                <Flexbox />
+            </Flexbox >
         );
     }
 }

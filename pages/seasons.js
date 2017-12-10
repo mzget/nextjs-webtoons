@@ -4,6 +4,7 @@ const React = require("react");
 const withMaterialUI_1 = require("../lib/withMaterialUI");
 const withData_1 = require("../lib/withData");
 const router_1 = require("next/router");
+const flexbox_react_1 = require("flexbox-react");
 const ContentList_1 = require("../src/components/ContentList");
 class Seasons extends React.Component {
     componentWillMount() {
@@ -16,8 +17,11 @@ class Seasons extends React.Component {
         });
     }
     render() {
-        return (React.createElement("div", null,
-            React.createElement(ContentList_1.default, Object.assign({}, this.props, { onClickContent: this.onClickItem }))));
+        return (React.createElement(flexbox_react_1.default, { flexDirection: "row", justifyContent: "center", height: "100%" },
+            React.createElement(flexbox_react_1.default, null),
+            React.createElement("div", { id: "seasons" },
+                React.createElement(ContentList_1.default, Object.assign({}, this.props, { onClickContent: this.onClickItem }))),
+            React.createElement(flexbox_react_1.default, null)));
     }
 }
 const SeasonPage = withMaterialUI_1.default(Seasons);

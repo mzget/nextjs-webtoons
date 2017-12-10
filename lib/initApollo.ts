@@ -22,7 +22,7 @@ function create(initialState: any) {
 
   return new ApolloClient({
     connectToDevTools: process.browser,
-    ssrMode: true, // !process.browser, // Disables forceFetch on the server (so queries are only run once)
+    ssrMode: true, //!process.browser, // Disables forceFetch on the server (so queries are only run once)
     link,
     cache: new InMemoryCache().restore(initialState || {}),
   });

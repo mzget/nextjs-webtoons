@@ -2,13 +2,15 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_apollo_1 = require("react-apollo");
+const responsiveHelper_1 = require("../utils/responsiveHelper");
 const ProgramList_1 = require("../queries/ProgramList");
 const SeasonsList_1 = require("../components/SeasonsList");
 class Programs extends React.Component {
     render() {
         const { programs } = this.props;
         const program = programs.lists[0];
-        return (React.createElement("div", null, (programs.loading) ? React.createElement("p", null, `Loading...`) :
+        const programDiv = (responsiveHelper_1.getScreen().appWidth <= responsiveHelper_1.SMALL) ? "100%" : `${responsiveHelper_1.SMALL}`;
+        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } }, (programs.loading) ? React.createElement("p", null, `Loading...`) :
             React.createElement("div", null,
                 React.createElement("p", { style: { marginLeft: 10 } },
                     React.createElement("strong", null, `รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`)),

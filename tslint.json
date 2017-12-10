@@ -10,7 +10,8 @@
         "ordered-imports": false,
         "member-access": false,
         "no-angle-bracket-type-assertion": false,
-        "no-console": false
+        "no-console": false,
+        "radix": false,
     },
     "rulesDirectory": []
 }

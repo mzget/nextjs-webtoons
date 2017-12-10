@@ -15,15 +15,15 @@ class SeasonsList extends React.Component {
     }
     onClickItem(data) {
         router_1.default.push({
-            pathname: "/play",
-            query: { ep: `${data}` },
+            pathname: "/seasons",
+            query: { season: `${data}` },
         });
     }
     render() {
         const { contents } = this.props.contents;
         const { seasons } = this.props.seasons;
         return (React.createElement(List_1.List, null, (this.props.contents.loading || this.props.seasons.loading) ? React.createElement("p", null, `Loading...`) :
-            !!seasons && seasons.map((season) => React.createElement(List_1.ListItem, { key: season.no, primaryText: `${season.program.name.th} ซีซั่น ${season.no} ${season.name}`, initiallyOpen: false, primaryTogglesNestedList: true, nestedItems: getLists(this.props, season.no, this.onClickItem) }))));
+            !!seasons && seasons.map((season) => React.createElement(List_1.ListItem, { key: season.no, primaryText: `${season.program.name.th} ซีซั่น ${season.no} ${season.name}`, initiallyOpen: false, primaryTogglesNestedList: false, onClick: () => this.onClickItem(season.no) }))));
     }
 }
 const SeasonsListWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.Seasons_List, {

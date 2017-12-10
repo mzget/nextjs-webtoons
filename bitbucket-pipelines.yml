@@ -13,6 +13,7 @@ pipelines:
         script: # Modify the commands below to build your repository.
           - npm install
           - npm test
+          - npm run build
           - docker login -u mzget -p dockerP@ssw0rd
           - docker build -t mzget/next-webtoons .
           - docker push mzget/next-webtoons

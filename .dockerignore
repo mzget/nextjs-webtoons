@@ -1,0 +1,6 @@
+/src/*
+/pages/*
+/lib/*
+tsconfig.json
+tslint.json
+howto.txt

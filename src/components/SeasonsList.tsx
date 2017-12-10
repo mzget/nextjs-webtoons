@@ -60,8 +60,8 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
 
     onClickItem(data: any) {
         Router.push({
-            pathname: "/play",
-            query: { ep: `${data}` },
+            pathname: "/seasons",
+            query: { season: `${data}` },
         });
     }
 
@@ -78,8 +78,8 @@ class SeasonsList extends React.Component<ISeasonsProps, any> {
                                 key={season.no}
                                 primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
                                 initiallyOpen={false}
-                                primaryTogglesNestedList={true}
-                                nestedItems={getLists(this.props, season.no, this.onClickItem)}
+                                primaryTogglesNestedList={false}
+                                onClick={() => this.onClickItem(season.no)}
                             />,
                         )
                 }

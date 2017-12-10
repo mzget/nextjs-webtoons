@@ -1,5 +1,6 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
+import Flexbox from "flexbox-react";
 
 import { List_QUERY } from "../queries/ProgramList";
 
@@ -18,17 +19,19 @@ class Programs extends React.Component<IProgramsProps, any> {
         const program = programs.lists[0];
 
         return (
-            <div>
-                {
-                    (programs.loading) ? <p>{`Loading...`}</p> :
-                        <div>
-                            <p style={{ marginLeft: 10 }}>
-                                <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
-                            </p>
-                            <SeasonsList />
-                        </div>
-                }
-            </div>
+            <Flexbox flexDirection="row" justifyContent="center" minHeight="100vh">
+                <Flexbox style={{ maxWidth: 600 }}>
+                    {
+                        (programs.loading) ? <p>{`Loading...`}</p> :
+                            <div>
+                                <p style={{ marginLeft: 10 }}>
+                                    <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
+                                </p>
+                                <SeasonsList />
+                            </div>
+                    }
+                </Flexbox>
+            </Flexbox>
         );
     }
 }

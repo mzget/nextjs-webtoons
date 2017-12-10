@@ -97,7 +97,7 @@ const WithMaterialUI = (ReactComponent) => {
 
             return (
                 <MuiThemeProvider muiTheme={getMuiTheme({ ...muiTheme, userAgent })}>
-                    <div style={{ backgroundColor: grey50, height: "100%", overflowY: "hidden" }} >
+                    <div style={{ backgroundColor: grey50, height: "100vh", margin: -8, overflowY: "hidden" }} >
                         <Toolbar>
                             <ToolbarGroup firstChild={true}>
                                 <Link href="/">

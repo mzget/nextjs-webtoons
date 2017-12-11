@@ -87,14 +87,6 @@ const WithMaterialUI = (ReactComponent) => {
         render() {
             const { userAgent } = this.props;
 
-            const standardActions = (
-                [<FlatButton
-                    label="Ok"
-                    primary={Boolean(true)}
-                    onClick={this.handleRequestClose}
-                />]
-            );
-
             return (
                 <MuiThemeProvider muiTheme={getMuiTheme({ ...muiTheme, userAgent })}>
                     <div style={{ backgroundColor: grey50, height: "calc(100vh -8px)", margin: -8, overflow: "hidden" }} >

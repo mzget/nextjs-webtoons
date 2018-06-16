@@ -2,13 +2,15 @@ import * as React from 'react';
 import { List, ListItem } from "material-ui/List";
 import { compose, graphql } from "react-apollo";
 import { Contents_QUERY } from "../queries/ProgramList";
-function getLists({ contents }, seasonNo, onClickItem) {
-    const seasons = contents.contents.filter((content) => content.season.no === parseInt(seasonNo));
-    return seasons.map((content, id) => React.createElement(ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th, onClick: () => onClickItem(content.epNo) }));
-}
 const ContentList = (props) => {
-    const { season } = props.url.query;
-    return (React.createElement(List, null, getLists(props, season, props.onClickContent)));
+    console.info("ContentList", props);
+    const { season } = props.router.query;
+    if (props.contents.loading) {
+        return React.createElement("p", null, "Loading...");
+    }
+    const { contents } = props.contents;
+    const seasons = contents.filter((content) => content.season.no === parseInt(season));
+    return (React.createElement(List, null, seasons.map((content, id) => React.createElement(ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th, onClick: () => props.onClickContent(content.epNo) }))));
 };
 const ContentListWithData = compose(graphql(Contents_QUERY, {
     name: "contents",

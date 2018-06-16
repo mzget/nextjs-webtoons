@@ -14,7 +14,7 @@ interface IWithDataProps {
   serverState: any;
 }
 
-export function ComposeData(ComposedComponent) {
+export function ComposeApollo(ComposedComponent) {
   return class WithData extends React.Component<IWithDataProps, any> {
 
     static displayName = `WithData(${getComponentDisplayName(ComposedComponent)})`;

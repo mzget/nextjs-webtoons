@@ -6,10 +6,12 @@ import SeasonsList from "../components/SeasonsList";
 class Programs extends React.Component {
     render() {
         const { programs } = this.props;
+        if (programs.loading) {
+            return React.createElement("p", null, `Loading...`);
+        }
         const program = programs.lists[0];
         const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
-        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } }, (programs.loading) ?
-            React.createElement("p", null, `Loading...`) :
+        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } },
             React.createElement("div", null,
                 React.createElement("p", { style: { marginLeft: 10 } },
                     React.createElement("strong", null, `รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`)),

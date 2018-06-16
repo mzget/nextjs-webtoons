@@ -1,11 +1,12 @@
 import * as React from "react";
 import WithMaterialUI from "../lib/withMaterialUI";
-import { ComposeData } from "../lib/withData";
+import { ComposeApollo } from "../lib/withData";
 import { List, ListItem } from "material-ui/List";
+import { compose, graphql } from "react-apollo";
+import Flexbox from "flexbox-react";
 
 import { withRouter, RouterProps } from "next/router";
-import Flexbox from "flexbox-react";
-import Head from 'next/head';
+import { Contents_QUERY } from "../src/queries/ProgramList";
 
 import { getScreen } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/utils/structs";
@@ -22,14 +23,10 @@ function onClickItem(router: RouterProps, data: any) {
 }
 
 function Chapters(props: { router: RouterProps }) {
+    console.info("Chapters page", props);
+
     return (
         <div>
-            <Head>
-                <title>dootoons.com</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <script dangerouslySetInnerHTML={{ __html: `(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-6158055273584096",enable_page_level_ads: true});` }} />
-            </Head>
             <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
                 <Flexbox />
                 <div id="seasons">
@@ -43,5 +40,4 @@ function Chapters(props: { router: RouterProps }) {
     );
 }
 
-const ChapterPage = WithMaterialUI(withRouter(Chapters));
-export default ComposeData(ChapterPage);
+export default ComposeApollo(withRouter(WithMaterialUI(Chapters)));

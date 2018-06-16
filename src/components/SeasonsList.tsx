@@ -5,7 +5,7 @@ import { withRouter, RouterProps } from "next/router";
 import { List, ListItem } from "material-ui/List";
 import Subheader from "material-ui/Subheader";
 
-import { Seasons_List, Contents_QUERY } from "../queries/ProgramList";
+import { Seasons_List } from "../queries/ProgramList";
 
 interface ISeasonsProps {
     seasons: {
@@ -62,14 +62,16 @@ function onClickItem(router: RouterProps, data: any) {
 }
 
 const SeasonsList = (props) => {
-    const { contents } = props.contents;
+    // const { contents } = props.contents;
     const { seasons } = props.seasons;
     const router = props.router as RouterProps;
+
+    console.info("seasons", props.seasons);
 
     return (
         <List>
             {
-                (props.contents.loading || props.seasons.loading) ? <p>{`Loading...`}</p> :
+                (props.seasons.loading) ? <p>{`Loading...`}</p> :
                     !!seasons && seasons.map((season) =>
                         <ListItem
                             key={season.no}
@@ -88,10 +90,6 @@ const SeasonsListWithData = compose(
     graphql(Seasons_List, {
         name: "seasons",
         options: { variables: { programId: "5a26828bf37263b3e436a2d7" } },
-    }),
-    graphql(Contents_QUERY, {
-        name: "contents",
-        options: ({ }) => ({ variables: { programId: "5a26828bf37263b3e436a2d7" } }),
     }),
 )(withRouter(SeasonsList));
 

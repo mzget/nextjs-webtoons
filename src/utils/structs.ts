@@ -1,3 +1,5 @@
+import { RouterProps } from "next/router";
+
 export interface ISeasonsProps {
     seasons: {
         loading: boolean,
@@ -41,5 +43,6 @@ export interface IRouteProps {
             ep: string,
             season: string,
         },
-    };
+    },
+    router: RouterProps,
 }

@@ -4,14 +4,15 @@ import { ComposeApollo } from "../lib/withData";
 import withMaterialUI from "../lib/withMaterialUI";
 
 import PlayContent from "../src/containers/PlayContent";
+import { HeaderComponent } from "../src/components/HeaderComp";
 
 function Index(props: any) {
     console.info("Play page", props);
 
     return (
-        <div>
+        <HeaderComponent>
             <PlayContent {...props} />
-        </div>
+        </HeaderComponent>
     );
 }
 

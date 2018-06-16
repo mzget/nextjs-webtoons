@@ -4,6 +4,7 @@ import { ComposeApollo } from "../lib/withData";
 import Flexbox from "flexbox-react";
 import { withRouter } from "next/router";
 import ContentList from "../src/components/ContentList";
+import { HeaderComponent } from "../src/components/HeaderComp";
 function onClickItem(router, data) {
     router.push({
         pathname: "/play",
@@ -12,7 +13,7 @@ function onClickItem(router, data) {
 }
 function Chapters(props) {
     console.info("Chapters page", props);
-    return (React.createElement("div", null,
+    return (React.createElement(HeaderComponent, null,
         React.createElement(Flexbox, { flexDirection: "row", justifyContent: "center", height: "100%" },
             React.createElement(Flexbox, null),
             React.createElement("div", { id: "seasons" },

@@ -8,6 +8,7 @@ import { withRouter, RouterProps } from "next/router";
 import { getScreen } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/utils/structs";
 import ContentList from "../src/components/ContentList";
+import { HeaderComponent } from "../src/components/HeaderComp";
 
 interface ISeasonPageProps extends IContentProps, IRouteProps { }
 
@@ -23,7 +24,7 @@ function Chapters(props: { router: RouterProps }) {
     console.info("Chapters page", props);
 
     return (
-        <div>
+        <HeaderComponent>
             <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
                 <Flexbox />
                 <div id="seasons">
@@ -33,7 +34,7 @@ function Chapters(props: { router: RouterProps }) {
                 </div>
                 <Flexbox />
             </Flexbox >
-        </div>
+        </HeaderComponent>
     );
 }
 

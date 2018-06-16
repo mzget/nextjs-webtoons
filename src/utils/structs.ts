@@ -1,5 +1,15 @@
 import { RouterProps } from "next/router";
 
+export interface Content {
+    _id: string,
+    src: string,
+    seasonId: string,
+    epNo: string,
+    epName: { th: string, en: string },
+    name: { th: string, en: string },
+    season: { _id: string, name: string, no: number, programId: string },
+}
+
 export interface ISeasonsProps {
     seasons: {
         loading: boolean,
@@ -25,15 +35,7 @@ export interface IContentProps {
         loading: boolean,
         error: any,
         lists: Array<{ id: number, name: { th: string, en: string } }>,
-        contents: Array<{
-            _id: string,
-            src: string,
-            seasonId: string,
-            epNo: string,
-            epName: { th: string, en: string },
-            name: { th: string, en: string },
-            season: { _id: string, name: string, no: number, programId: string },
-        }>,
+        contents: Array<Content>,
     };
 }
 

@@ -1,12 +1,9 @@
 import * as React from "react";
 import WithMaterialUI from "../lib/withMaterialUI";
 import { ComposeApollo } from "../lib/withData";
-import { List, ListItem } from "material-ui/List";
-import { compose, graphql } from "react-apollo";
 import Flexbox from "flexbox-react";
 
 import { withRouter, RouterProps } from "next/router";
-import { Contents_QUERY } from "../src/queries/ProgramList";
 
 import { getScreen } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/utils/structs";

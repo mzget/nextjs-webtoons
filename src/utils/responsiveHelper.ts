@@ -8,7 +8,7 @@ export const LARGE = 1280;
 export const XLARGE = 1920;
 
 export function getScreen() {
-    if (process.browser) {
+    if ((process as any).browser) {
         appWidth = document.documentElement.clientWidth;
         appHeight = document.documentElement.clientHeight;
     }

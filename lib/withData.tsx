@@ -14,7 +14,7 @@ interface IWithDataProps {
   serverState: any;
 }
 
-export default ComposedComponent => {
+export function ComposeData(ComposedComponent) {
   return class WithData extends React.Component<IWithDataProps, any> {
 
     static displayName = `WithData(${getComponentDisplayName(ComposedComponent)})`;
@@ -35,7 +35,7 @@ export default ComposedComponent => {
 
       // Run all GraphQL queries in the component tree
       // and extract the resulting data
-      if (!process.browser) {
+      if (!(process as any).browser) {
         const apollo = initApollo();
         // Provide the `url` prop data in case a GraphQL query uses it
         const url = { query: ctx.query, pathname: ctx.pathname };
@@ -43,7 +43,7 @@ export default ComposedComponent => {
           // Run all GraphQL queries
           await getDataFromTree(
             <ApolloProvider client={apollo} >
-              <ComposedComponent url={url} { ...composedInitialProps } />
+              <ComposedComponent url={url} {...composedInitialProps} />
             </ApolloProvider>,
           );
         } catch (error) {
@@ -80,7 +80,7 @@ export default ComposedComponent => {
     render() {
       return (
         <ApolloProvider client={this.apollo} >
-          <ComposedComponent { ...this.props } />
+          <ComposedComponent {...this.props} />
         </ApolloProvider>
       );
     }

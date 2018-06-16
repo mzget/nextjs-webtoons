@@ -23,7 +23,8 @@ class Programs extends React.Component<IProgramsProps, any> {
         return (
             <div id="program" style={{ overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" }}  >
                 {
-                    (programs.loading) ? <p>{`Loading...`}</p> :
+                    (programs.loading) ?
+                        <p>{`Loading...`}</p> :
                         <div>
                             <p style={{ marginLeft: 10 }}>
                                 <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>

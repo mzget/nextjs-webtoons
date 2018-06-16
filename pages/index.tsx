@@ -2,7 +2,7 @@ import * as React from "react";
 import Flexbox from "flexbox-react";
 import Head from 'next/head';
 
-import withData from "../lib/withData";
+import { ComposeData } from "../lib/withData";
 import withMaterialUI from "../lib/withMaterialUI";
 
 import { getScreen } from "../src/utils/responsiveHelper";
@@ -31,6 +31,6 @@ const Index = (props: any) => (
 );
 
 const HomePage = withMaterialUI(Index);
-const HomeWithData = withData(HomePage);
+const HomeWithData = ComposeData(HomePage);
 
 export default HomeWithData;

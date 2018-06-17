@@ -14,7 +14,14 @@ export interface IContent extends IRouteProps {
 }
 
 function PlayContent(props: IContent) {
-    const { loading, content } = props.data;
+    const { loading, error, content } = props.data;
+    console.info("PlayContent", props);
+    if (loading) {
+        return <p>{loading}</p>
+    }
+    if (error) {
+        return <p>{error.message}</p>
+    }
 
     return (
         <div>

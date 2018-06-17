@@ -2,7 +2,14 @@ import * as React from "react";
 import { graphql, compose } from "react-apollo";
 import { Content_QUERY } from "../queries/ProgramList";
 function PlayContent(props) {
-    const { loading, content } = props.data;
+    const { loading, error, content } = props.data;
+    console.info("PlayContent", props);
+    if (loading) {
+        return React.createElement("p", null, loading);
+    }
+    if (error) {
+        return React.createElement("p", null, error.message);
+    }
     return (React.createElement("div", null, (loading) ?
         React.createElement("p", null, loading)
         :

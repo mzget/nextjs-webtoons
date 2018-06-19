@@ -7,8 +7,8 @@
     "test": "jest",
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
-    "dev-server": "nodemon server.js",
+    "start": "NODE_ENV=production PORT=8080 node server.js",
+    "dev-server": "PORT=3000 nodemon server.js",
     "analyze": "cross-env ANALYZE=1 next build"
   },
   "keywords": [],

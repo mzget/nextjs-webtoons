@@ -13,9 +13,11 @@ if (!(<any>process).browser) {
   (<any>global).fetch = fetch;
 }
 
+// http://localhost:4000/api/graphql
+
 function create(initialState: any) {
   const link = new HttpLink({
-    uri: "http://localhost:4000/api/graphql",
+    uri: "https://node-webtoon.appspot.com/api/graphql",
     credentials: "same-origin",
     // fetch,
   });

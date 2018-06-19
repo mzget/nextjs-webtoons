@@ -13,6 +13,10 @@ app.prepare().then(() => {
     //     const queryParams = { title: req.params.id };
     //     app.render(req, res, actualPage, queryParams);
     // });
+    server.get("/", (req, res, next) => {
+        res.send('Hello from App Engine!');
+        // return handle(req, res);
+    });
 
     server.get("*", (req, res) => {
         console.log("server.js", req.url);

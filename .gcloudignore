@@ -12,6 +12,9 @@
 # below:
 .git
 .gitignore
+next.config.js
+bitbucket-pipelines.yml
+
 
 # Node.js dependencies:
 node_modules/

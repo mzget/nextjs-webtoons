@@ -5,10 +5,9 @@ export function HeaderComponent(props) {
     return (
         <React.Fragment>
             <Head>
-                <title>dootoons.com</title>
+                <title>all-animes.appspot.com</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                <script dangerouslySetInnerHTML={{ __html: `(adsbygoogle = window.adsbygoogle || []).push({google_ad_client: "ca-pub-6158055273584096",enable_page_level_ads: true});` }} />
+                <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
             </Head>
             {
                 props.children

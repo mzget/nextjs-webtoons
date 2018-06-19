@@ -5,6 +5,7 @@ export function HeaderComponent(props) {
         React.createElement(Head, null,
             React.createElement("title", null, "all-animes.appspot.com"),
             React.createElement("meta", { name: "viewport", content: "initial-scale=1.0, width=device-width" }),
-            React.createElement("meta", { name: "propeller", content: "1ca9c2781a277fe80eca4eb04c67365b" })),
+            React.createElement("meta", { name: "propeller", content: "1ca9c2781a277fe80eca4eb04c67365b" }),
+            React.createElement("script", { type: "text/javascript", src: "//go.oclaserver.com/apu.php?zoneid=1769415" })),
         props.children));
 }

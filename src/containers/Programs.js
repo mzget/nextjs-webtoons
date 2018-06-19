@@ -1,21 +1,22 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const react_apollo_1 = require("react-apollo");
-const responsiveHelper_1 = require("../utils/responsiveHelper");
-const ProgramList_1 = require("../queries/ProgramList");
-const SeasonsList_1 = require("../components/SeasonsList");
+import * as React from "react";
+import { compose, graphql } from "react-apollo";
+import { getScreen, SMALL } from "../utils/responsiveHelper";
+import { List_QUERY } from "../queries/ProgramList";
+import SeasonsList from "../components/SeasonsList";
 class Programs extends React.Component {
     render() {
         const { programs } = this.props;
+        if (programs.loading) {
+            return React.createElement("p", null, `Loading...`);
+        }
         const program = programs.lists[0];
-        const programDiv = (responsiveHelper_1.getScreen().appWidth <= responsiveHelper_1.SMALL) ? "100%" : `${responsiveHelper_1.SMALL}`;
-        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } }, (programs.loading) ? React.createElement("p", null, `Loading...`) :
+        const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
+        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } },
             React.createElement("div", null,
                 React.createElement("p", { style: { marginLeft: 10 } },
                     React.createElement("strong", null, `รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`)),
-                React.createElement(SeasonsList_1.default, null))));
+                React.createElement(SeasonsList, null))));
     }
 }
-const ProgramsWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.List_QUERY, { name: "programs" }))(Programs);
-exports.default = ProgramsWithData;
+const ProgramsWithData = compose(graphql(List_QUERY, { name: "programs" }))(Programs);
+export default ProgramsWithData;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
-import Router from "next/router";
+import { withRouter, RouterProps } from "next/router";
 
 import { List, ListItem } from "material-ui/List";
 import Subheader from "material-ui/Subheader";
 
-import { Seasons_List, Contents_QUERY } from "../queries/ProgramList";
+import { Seasons_List } from "../queries/ProgramList";
 
 interface ISeasonsProps {
     seasons: {
@@ -53,39 +53,37 @@ function getLists({ contents }: ISeasonsProps, seasonNo: number, onClickItem: (d
         />,
     );
 }
-class SeasonsList extends React.Component<ISeasonsProps, any> {
-    componentWillMount() {
-        this.onClickItem = this.onClickItem.bind(this);
-    }
 
-    onClickItem(data: any) {
-        Router.push({
-            pathname: "/seasons",
-            query: { season: `${data}` },
-        });
-    }
+function onClickItem(router: RouterProps, data: any) {
+    router.push({
+        pathname: "/chapters",
+        query: { season: `${data}` },
+    });
+}
 
-    render() {
-        const { contents } = this.props.contents;
-        const { seasons } = this.props.seasons;
+const SeasonsList = (props) => {
+    // const { contents } = props.contents;
+    const { seasons } = props.seasons;
+    const router = props.router as RouterProps;
 
-        return (
-            <List>
-                {
-                    (this.props.contents.loading || this.props.seasons.loading) ? <p>{`Loading...`}</p> :
-                        !!seasons && seasons.map((season) =>
-                            <ListItem
-                                key={season.no}
-                                primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
-                                initiallyOpen={false}
-                                primaryTogglesNestedList={false}
-                                onClick={() => this.onClickItem(season.no)}
-                            />,
-                        )
-                }
-            </List>
-        );
-    }
+    console.info("seasons", props.seasons);
+
+    return (
+        <List>
+            {
+                (props.seasons.loading) ? <p>{`Loading...`}</p> :
+                    !!seasons && seasons.map((season) =>
+                        <ListItem
+                            key={season.no}
+                            primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
+                            initiallyOpen={false}
+                            primaryTogglesNestedList={false}
+                            onClick={() => onClickItem(router, season.no)}
+                        />,
+                    )
+            }
+        </List>
+    );
 }
 
 const SeasonsListWithData = compose(
@@ -93,10 +91,6 @@ const SeasonsListWithData = compose(
         name: "seasons",
         options: { variables: { programId: "5a26828bf37263b3e436a2d7" } },
     }),
-    graphql(Contents_QUERY, {
-        name: "contents",
-        options: ({ }) => ({ variables: { programId: "5a26828bf37263b3e436a2d7" } }),
-    }),
-)(SeasonsList);
+)(withRouter(SeasonsList));
 
 export default SeasonsListWithData;

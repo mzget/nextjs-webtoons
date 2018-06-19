@@ -14,23 +14,24 @@ interface IProgramsProps {
         lists: Array<{ _id: string, name: { th: string, en: string } }>,
     };
 }
+
 class Programs extends React.Component<IProgramsProps, any> {
     render() {
         const { programs } = this.props;
+        if (programs.loading) {
+            return <p>{`Loading...`}</p>
+        }
         const program = programs.lists[0];
         const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
 
         return (
             <div id="program" style={{ overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" }}  >
-                {
-                    (programs.loading) ? <p>{`Loading...`}</p> :
-                        <div>
-                            <p style={{ marginLeft: 10 }}>
-                                <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
-                            </p>
-                            <SeasonsList />
-                        </div>
-                }
+                <div>
+                    <p style={{ marginLeft: 10 }}>
+                        <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
+                    </p>
+                    <SeasonsList />
+                </div>
             </div>
         );
     }

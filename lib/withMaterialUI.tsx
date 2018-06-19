@@ -50,7 +50,7 @@ const WithMaterialUI = (ReactComponent) => {
         static getInitialProps({ req }) {
             // Ensures material-ui renders the correct css prefixes server-side
             let userAgent;
-            if (process.browser) {
+            if ((process as any).browser) {
                 userAgent = navigator.userAgent;
             } else {
                 userAgent = req.headers["user-agent"];

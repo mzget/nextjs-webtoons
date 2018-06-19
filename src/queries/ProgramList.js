@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const graphql_tag_1 = require("graphql-tag");
+import gql from "graphql-tag";
 // here we create a query opearation
-exports.List_QUERY = graphql_tag_1.default `query programs {
+export const List_QUERY = gql `query programs {
     lists {
       _id
       name {
@@ -11,7 +9,7 @@ exports.List_QUERY = graphql_tag_1.default `query programs {
       }
     }
 }`;
-exports.Contents_QUERY = graphql_tag_1.default `query contents($programId: String!, $seasonId : String) {
+export const Contents_QUERY = gql `query contents($programId: String!, $seasonId : String) {
   contents(programId: $programId, seasonId: $seasonId) {
     _id
     name {
@@ -34,7 +32,7 @@ exports.Contents_QUERY = graphql_tag_1.default `query contents($programId: Strin
     programId
   }
 }`;
-exports.Content_QUERY = graphql_tag_1.default `query content($episode : Int!) {
+export const Content_QUERY = gql `query content($episode : Int!) {
   content(episode: $episode) {
     _id
     name {
@@ -57,7 +55,7 @@ exports.Content_QUERY = graphql_tag_1.default `query content($episode : Int!) {
     programId
   }
 }`;
-exports.Seasons_List = graphql_tag_1.default `query seasons($programId : String!) {
+export const Seasons_List = gql `query seasons($programId : String!) {
   seasons(programId: $programId) {
     _id
     no

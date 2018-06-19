@@ -10,26 +10,28 @@ interface ISeasonPageProps extends IContentProps, IRouteProps {
     onClickContent: (ep: string) => void;
 }
 
-function getLists({ contents }: ISeasonPageProps, seasonNo: string, onClickItem: (ep: string) => void) {
-    const seasons = contents.contents.filter((content) =>
-        content.season.no === parseInt(seasonNo));
-
-    return seasons.map((content, id) =>
-        <ListItem
-            key={id}
-            primaryText={`ตอนที่ ${content.epNo}`}
-            secondaryText={content.epName.th}
-            onClick={() => onClickItem(content.epNo)}
-        />,
-    );
-}
-
 const ContentList = (props: ISeasonPageProps) => {
-    const { season } = props.url.query;
+    console.info("ContentList", props);
+    const { season } = props.router.query as any;
+
+    if (props.contents.loading) {
+        return <p>Loading...</p>
+    }
+    const { contents } = props.contents;
+    const seasons = contents.filter((content) =>
+        content.season.no === parseInt(season));
+
     return (
         <List>
             {
-                getLists(props, season, props.onClickContent)
+                seasons.map((content, id) =>
+                    <ListItem
+                        key={id}
+                        primaryText={`ตอนที่ ${content.epNo}`}
+                        secondaryText={content.epName.th}
+                        onClick={() => props.onClickContent(content.epNo)}
+                    />,
+                )
             }
         </List>
     );

@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
@@ -15,11 +14,11 @@ app.prepare().then(() => {
     server.get("*", (req, res) => {
         return handle(req, res);
     });
-    server.listen(3000, (err) => {
+    server.listen(process.env.PORT, (err) => {
         if (err) {
             throw err;
         }
-        console.log("> Ready on http://localhost:3000");
+        console.log(`> Ready on PORT ${process.env.PORT}`);
     });
 }).catch((ex) => {
     console.error(ex.stack);

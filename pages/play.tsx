@@ -1,16 +1,19 @@
 import * as React from "react";
-import withData from "../lib/withData";
+import { withRouter } from "next/router";
+import { ComposeApollo } from "../lib/withData";
 import withMaterialUI from "../lib/withMaterialUI";
 
 import PlayContent from "../src/containers/PlayContent";
+import { HeaderComponent } from "../src/components/HeaderComp";
 
-const Index = (props: any) => (
-    <div>
-        <PlayContent {...props} />
-    </div>
-);
+function Index(props: any) {
+    console.info("Play page", props);
 
-const Page = withMaterialUI(Index);
-const PlayPageWithData = withData(Page);
+    return (
+        <HeaderComponent>
+            <PlayContent {...props} />
+        </HeaderComponent>
+    );
+}
 
-export default PlayPageWithData;
+export default ComposeApollo(withMaterialUI(withRouter(Index)));;

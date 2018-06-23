@@ -1,10 +1,17 @@
 import * as React from "react";
-import WithMaterialUI from "../lib/withMaterialUI";
-import { ComposeApollo } from "../lib/withData";
 import Flexbox from "flexbox-react";
+import { withStyles } from '@material-ui/core/styles';
+import withRoot from '../lib/withRoot';
+import { ComposeApollo } from "../lib/withData";
 import { withRouter } from "next/router";
 import ContentList from "../src/components/ContentList";
 import { HeaderComponent } from "../src/components/HeaderComp";
+const styles = theme => ({
+    root: {
+        textAlign: 'center',
+        paddingTop: theme.spacing.unit * 20,
+    },
+});
 function onClickItem(router, data) {
     router.push({
         pathname: "/play",
@@ -20,4 +27,5 @@ function Chapters(props) {
                 React.createElement(ContentList, Object.assign({}, props, { onClickContent: (data) => onClickItem(props.router, data) }))),
             React.createElement(Flexbox, null))));
 }
-export default ComposeApollo(withRouter(WithMaterialUI(Chapters)));
+const ChaptersPage = withRoot(withStyles(styles)(Chapters));
+export default ComposeApollo(withRouter(ChaptersPage));

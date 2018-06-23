@@ -29,16 +29,16 @@ function PlayContent(props: IContent) {
                 (loading) ?
                     <p>{loading}</p>
                     :
-                    <div>
+                    <div style={{ margin: 8 }}>
                         <p style={{ marginLeft: 12 }}>
                             <strong>{`ซีซั่น ${content.season.no} ${content.season.name}`}</strong>
                         </p>
                         <p style={{ marginLeft: 12 }}>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
-                        <span>
-                            <video width={"100%"} controls src={content.src} >
+                        <React.Fragment>
+                            <video height={"480"} controls src={content.src}>
                                 Sorry, your browser doesn't support embedded videos.
                             </video>
-                        </span>
+                        </React.Fragment>
                     </div>
             }
         </div>

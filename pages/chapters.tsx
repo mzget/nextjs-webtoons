@@ -1,7 +1,9 @@
 import * as React from "react";
-import WithMaterialUI from "../lib/withMaterialUI";
-import { ComposeApollo } from "../lib/withData";
 import Flexbox from "flexbox-react";
+import { withStyles } from '@material-ui/core/styles';
+
+import withRoot from '../lib/withRoot';
+import { ComposeApollo } from "../lib/withData";
 
 import { withRouter, RouterProps } from "next/router";
 
@@ -12,6 +14,12 @@ import { HeaderComponent } from "../src/components/HeaderComp";
 
 interface ISeasonPageProps extends IContentProps, IRouteProps { }
 
+const styles = theme => ({
+    root: {
+        textAlign: 'center',
+        paddingTop: theme.spacing.unit * 20,
+    },
+});
 
 function onClickItem(router: RouterProps, data: any) {
     router.push({
@@ -37,5 +45,5 @@ function Chapters(props: { router: RouterProps }) {
         </HeaderComponent>
     );
 }
-
-export default ComposeApollo(withRouter(WithMaterialUI(Chapters)));
+const ChaptersPage = withRoot(withStyles(styles)(Chapters));
+export default ComposeApollo(withRouter(ChaptersPage));

@@ -2,8 +2,10 @@ import * as React from "react";
 import { compose, graphql } from "react-apollo";
 import { withRouter, RouterProps } from "next/router";
 
-import { List, ListItem } from "material-ui/List";
-import Subheader from "material-ui/Subheader";
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import { Seasons_List } from "../queries/ProgramList";
 
@@ -54,6 +56,14 @@ function getLists({ contents }: ISeasonsProps, seasonNo: number, onClickItem: (d
     );
 }
 
+const styles = theme => ({
+    root: {
+        width: '100%',
+        maxWidth: 360,
+        backgroundColor: theme.palette.background.paper,
+    },
+});
+
 function onClickItem(router: RouterProps, data: any) {
     router.push({
         pathname: "/chapters",
@@ -62,6 +72,7 @@ function onClickItem(router: RouterProps, data: any) {
 }
 
 const SeasonsList = (props) => {
+    const { classes } = props;
     // const { contents } = props.contents;
     const { seasons } = props.seasons;
     const router = props.router as RouterProps;
@@ -69,28 +80,31 @@ const SeasonsList = (props) => {
     console.info("seasons", props.seasons);
 
     return (
-        <List>
-            {
-                (props.seasons.loading) ? <p>{`Loading...`}</p> :
-                    !!seasons && seasons.map((season) =>
-                        <ListItem
-                            key={season.no}
-                            primaryText={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
-                            initiallyOpen={false}
-                            primaryTogglesNestedList={false}
-                            onClick={() => onClickItem(router, season.no)}
-                        />,
-                    )
-            }
-        </List>
+        <div className={classes.root}>
+            <List component="nav">
+                {
+                    (props.seasons.loading) ? <p>{`Loading...`}</p> :
+                        !!seasons && seasons.map((season) =>
+                            <ListItem
+                                key={season.no}
+                                button
+                                divider
+                                onClick={() => onClickItem(router, season.no)}
+                            >
+                                <ListItemText primary={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`} />
+                            </ListItem>,
+                        )
+                }
+            </List>
+        </div>
     );
 }
-
+const SeasonsListUI = withStyles(styles)(SeasonsList);
 const SeasonsListWithData = compose(
     graphql(Seasons_List, {
         name: "seasons",
         options: { variables: { programId: "5a26828bf37263b3e436a2d7" } },
     }),
-)(withRouter(SeasonsList));
+)(withRouter(SeasonsListUI));
 
 export default SeasonsListWithData;

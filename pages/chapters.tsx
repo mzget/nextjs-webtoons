@@ -16,8 +16,6 @@ interface ISeasonPageProps extends IContentProps, IRouteProps { }
 
 const styles = theme => ({
     root: {
-        textAlign: 'center',
-        paddingTop: theme.spacing.unit * 20,
     },
 });
 
@@ -28,21 +26,23 @@ function onClickItem(router: RouterProps, data: any) {
     });
 }
 
-function Chapters(props: { router: RouterProps }) {
-    console.info("Chapters page", props);
+function Chapters(props: { router: RouterProps, classes }) {
+    const { classes } = props;
 
     return (
-        <HeaderComponent>
-            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
-                <Flexbox />
-                <div id="seasons">
-                    <ContentList {...props}
-                        onClickContent={(data) => onClickItem(props.router, data)}
-                    />
-                </div>
-                <Flexbox />
-            </Flexbox >
-        </HeaderComponent>
+        <div className={classes.root}>
+            <HeaderComponent>
+                <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
+                    <Flexbox />
+                    <div id="seasons">
+                        <ContentList {...props}
+                            onClickContent={(data) => onClickItem(props.router, data)}
+                        />
+                    </div>
+                    <Flexbox />
+                </Flexbox >
+            </HeaderComponent>
+        </div>
     );
 }
 const ChaptersPage = withRoot(withStyles(styles)(Chapters));

@@ -17,7 +17,7 @@ if (!(<any>process).browser) {
 
 function create(initialState: any) {
   const link = new HttpLink({
-    uri: "https://node-webtoon.appspot.com/api/graphql",
+    uri: "https://awesome-barcode.appspot.com/api/graphql",
     credentials: "same-origin",
     // fetch,
   });

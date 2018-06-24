@@ -23,15 +23,23 @@ const styles = {
 };
 function ButtonAppBar(props) {
     const { classes } = props;
-    return (React.createElement("div", { className: classes.root },
-        React.createElement(AppBar, { position: "static" },
-            React.createElement(Toolbar, null,
-                React.createElement(IconButton, { className: classes.menuButton, color: "inherit", "aria-label": "Menu" },
-                    React.createElement(MenuIcon, null)),
-                React.createElement(Link, { href: "/" },
-                    React.createElement(Typography, { variant: "title", color: "inherit", className: classes.flex }, "Home")),
-                React.createElement(Link, { href: "/about" },
-                    React.createElement(Button, { color: "inherit" }, "About"))))));
+    return (<div className={classes.root}>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <MenuIcon />
+                    </IconButton>
+                    <Link href="/">
+                        <Typography variant="title" color="inherit" className={classes.flex}>
+                            Home
+                        </Typography>
+                    </Link>
+                    <Link href="/about">
+                        <Button color="inherit">About</Button>
+                    </Link>
+                </Toolbar>
+            </AppBar>
+        </div>);
 }
 // ButtonAppBar.propTypes = {
 //     classes: PropTypes.object.isRequired,

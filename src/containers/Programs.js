@@ -1,22 +1,45 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
-import { getScreen, SMALL } from "../utils/responsiveHelper";
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import { getScreen, XSMALL } from "../utils/responsiveHelper";
 import { List_QUERY } from "../queries/ProgramList";
 import SeasonsList from "../components/SeasonsList";
+const styles = (props) => {
+    return {
+        root: {
+            overflowX: "hidden",
+            width: `${props.width}`,
+            overflowY: "auto",
+        },
+        title: {
+            flex: 1,
+            padding: 16,
+        },
+        seasonList: {
+            flex: 1,
+        },
+    };
+};
 class Programs extends React.Component {
     render() {
-        const { programs } = this.props;
+        const { programs, classes } = this.props;
         if (programs.loading) {
-            return React.createElement("p", null, `Loading...`);
+            return <p>{`Loading...`}</p>;
         }
         const program = programs.lists[0];
-        const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
-        return (React.createElement("div", { id: "program", style: { overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" } },
-            React.createElement("div", null,
-                React.createElement("p", { style: { marginLeft: 10 } },
-                    React.createElement("strong", null, `รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`)),
-                React.createElement(SeasonsList, null))));
+        return (<div id="program" className={classes.root}>
+                <div className={classes.title}>
+                    <Typography variant="title" color="inherit">
+                        {`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}
+                    </Typography>
+                </div>
+                <div className={classes.seasonList}>
+                    <SeasonsList />
+                </div>
+            </div>);
     }
 }
-const ProgramsWithData = compose(graphql(List_QUERY, { name: "programs" }))(Programs);
-export default ProgramsWithData;
+const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
+const ProgramsUI = withStyles(styles({ width: programDiv }))(Programs);
+export default compose(graphql(List_QUERY, { name: "programs" }))(ProgramsUI);

@@ -15,7 +15,6 @@ const styles = theme => ({
 export const About = (props: any) => {
     const { classes } = props;
     console.log("About page")
-    console.log("browser", (process as any).browser, process.env.NODE_ENV);
 
     return (
         <HeaderComponent>
@@ -29,4 +28,4 @@ export const About = (props: any) => {
     );
 }
 
-export default withRoot(withStyles(styles)(About));
+export default withRoot(withStyles(styles, { withTheme: true })(About));

@@ -32,7 +32,7 @@ const ContentList = (props: ISeasonPageProps) => {
         content.season.no === parseInt(season));
 
     return (
-        <List>
+        <List component="nav">
             {
                 seasons.map((content, id) =>
                     <ListItem

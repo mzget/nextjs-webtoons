@@ -12,10 +12,13 @@ const styles = theme => ({
 export const About = (props) => {
     const { classes } = props;
     console.log("About page");
-    console.log("browser", process.browser, process.env.NODE_ENV);
-    return (React.createElement(HeaderComponent, null,
-        React.createElement(AppBarUI, null),
-        React.createElement("div", { className: classes.text },
-            React.createElement(Typography, { variant: "title", color: "inherit", className: classes.flex }, `วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`))));
+    return (<HeaderComponent>
+            <AppBarUI />
+            <div className={classes.text}>
+                <Typography variant="title" color="inherit" className={classes.flex}>
+                    {`วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`}
+                </Typography>
+            </div>
+        </HeaderComponent>);
 };
-export default withRoot(withStyles(styles)(About));
+export default withRoot(withStyles(styles, { withTheme: true })(About));

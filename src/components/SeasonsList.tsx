@@ -56,13 +56,7 @@ function getLists({ contents }: ISeasonsProps, seasonNo: number, onClickItem: (d
     );
 }
 
-const styles = theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-});
+const styles = theme => ({});
 
 function onClickItem(router: RouterProps, data: any) {
     router.push({

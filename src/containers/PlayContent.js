@@ -6,20 +6,27 @@ function PlayContent(props) {
     const { loading, error, content } = props.data;
     console.info("PlayContent", props);
     if (loading) {
-        return React.createElement("p", null, loading);
+        return <p>{loading}</p>;
     }
     if (error) {
-        return React.createElement("p", null, error.message);
+        return <p>{error.message}</p>;
     }
-    return (React.createElement("div", null, (loading) ?
-        React.createElement("p", null, loading)
+    return (<div>
+            {(loading) ?
+        <p>{loading}</p>
         :
-            React.createElement("div", { style: { margin: 8 } },
-                React.createElement("p", { style: { marginLeft: 12 } },
-                    React.createElement("strong", null, `ซีซั่น ${content.season.no} ${content.season.name}`)),
-                React.createElement("p", { style: { marginLeft: 12 } }, `ตอนที่ ${content.epNo} ${content.epName.th}`),
-                React.createElement(React.Fragment, null,
-                    React.createElement("video", { height: "480", controls: true, src: content.src }, "Sorry, your browser doesn't support embedded videos.")))));
+            <div style={{ margin: 8 }}>
+                        <p style={{ marginLeft: 12 }}>
+                            <strong>{`ซีซั่น ${content.season.no} ${content.season.name}`}</strong>
+                        </p>
+                        <p style={{ marginLeft: 12 }}>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
+                        <React.Fragment>
+                            <video height={"480"} controls src={content.src}>
+                                Sorry, your browser doesn't support embedded videos.
+                            </video>
+                        </React.Fragment>
+                    </div>}
+        </div>);
 }
 const PlayContentWithData = compose(graphql(Content_QUERY, {
     options: (props) => ({ variables: { episode: props.router.query.ep } }),

@@ -8,15 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { Seasons_List } from "../queries/ProgramList";
 function getLists({ contents }, seasonNo, onClickItem) {
     const seasons = contents.contents.filter((content) => content.season.no === seasonNo);
-    return seasons.map((content, id) => React.createElement(ListItem, { key: id, primaryText: `ตอนที่ ${content.epNo}`, secondaryText: content.epName.th, onClick: () => onClickItem(content.epNo) }));
+    return seasons.map((content, id) => <ListItem key={id} primaryText={`ตอนที่ ${content.epNo}`} secondaryText={content.epName.th} onClick={() => onClickItem(content.epNo)}/>);
 }
-const styles = theme => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-    },
-});
+const styles = theme => ({});
 function onClickItem(router, data) {
     router.push({
         pathname: "/chapters",
@@ -29,10 +23,14 @@ const SeasonsList = (props) => {
     const { seasons } = props.seasons;
     const router = props.router;
     console.info("seasons", props.seasons);
-    return (React.createElement("div", { className: classes.root },
-        React.createElement(List, { component: "nav" }, (props.seasons.loading) ? React.createElement("p", null, `Loading...`) :
-            !!seasons && seasons.map((season) => React.createElement(ListItem, { key: season.no, button: true, divider: true, onClick: () => onClickItem(router, season.no) },
-                React.createElement(ListItemText, { primary: `${season.program.name.th} ซีซั่น ${season.no} ${season.name}` }))))));
+    return (<div className={classes.root}>
+            <List component="nav">
+                {(props.seasons.loading) ? <p>{`Loading...`}</p> :
+        !!seasons && seasons.map((season) => <ListItem key={season.no} button divider onClick={() => onClickItem(router, season.no)}>
+                                <ListItemText primary={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}/>
+                            </ListItem>)}
+            </List>
+        </div>);
 };
 const SeasonsListUI = withStyles(styles)(SeasonsList);
 const SeasonsListWithData = compose(graphql(Seasons_List, {

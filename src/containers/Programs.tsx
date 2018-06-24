@@ -1,8 +1,9 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
-import Flexbox from "flexbox-react";
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-import { getScreen, SMALL } from "../utils/responsiveHelper";
+import { getScreen, XSMALL } from "../utils/responsiveHelper";
 import { List_QUERY } from "../queries/ProgramList";
 
 import SeasonsList from "../components/SeasonsList";
@@ -13,23 +14,42 @@ interface IProgramsProps {
         error: any,
         lists: Array<{ _id: string, name: { th: string, en: string } }>,
     };
+    classes: any,
 }
+
+const styles = (props) => {
+    return {
+        root: {
+            overflowX: "hidden",
+            width: `${props.width}`,
+            overflowY: "auto",
+        },
+        title: {
+            flex: 1,
+            padding: 16,
+        },
+        seasonList: {
+            flex: 1,
+        },
+    }
+};
 
 class Programs extends React.Component<IProgramsProps, any> {
     render() {
-        const { programs } = this.props;
+        const { programs, classes } = this.props;
         if (programs.loading) {
             return <p>{`Loading...`}</p>
         }
         const program = programs.lists[0];
-        const programDiv = (getScreen().appWidth <= SMALL) ? "100%" : `${SMALL}`;
 
         return (
-            <div id="program" style={{ overflowX: "hidden", width: `${programDiv}`, overflowY: "auto" }}  >
-                <div>
-                    <p style={{ marginLeft: 10 }}>
-                        <strong>{`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}</strong>
-                    </p>
+            <div id="program" className={classes.root} >
+                <div className={classes.title}>
+                    <Typography variant="title" color="inherit" >
+                        {`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}
+                    </Typography>
+                </div>
+                <div className={classes.seasonList}>
                     <SeasonsList />
                 </div>
             </div>
@@ -37,8 +57,8 @@ class Programs extends React.Component<IProgramsProps, any> {
     }
 }
 
-const ProgramsWithData = compose(
+const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
+const ProgramsUI = withStyles(styles({ width: programDiv }))(Programs);
+export default compose(
     graphql(List_QUERY, { name: "programs" }),
-)(Programs);
-
-export default ProgramsWithData;
+)(ProgramsUI);

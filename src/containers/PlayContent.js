@@ -1,4 +1,5 @@
 import * as React from "react";
+import { withRouter } from "next/router";
 import { graphql, compose } from "react-apollo";
 import { Content_QUERY } from "../queries/ProgramList";
 function PlayContent(props) {
@@ -23,4 +24,4 @@ function PlayContent(props) {
 const PlayContentWithData = compose(graphql(Content_QUERY, {
     options: (props) => ({ variables: { episode: props.router.query.ep } }),
 }))(PlayContent);
-export default PlayContentWithData;
+export default withRouter(PlayContentWithData);

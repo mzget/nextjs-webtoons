@@ -1,4 +1,5 @@
 import * as React from "react";
+import { withRouter } from "next/router";
 import { graphql, compose } from "react-apollo";
 
 import { Content_QUERY } from "../queries/ProgramList";
@@ -52,4 +53,4 @@ const PlayContentWithData = compose(
     }),
 )(PlayContent);
 
-export default PlayContentWithData;
+export default withRouter(PlayContentWithData);

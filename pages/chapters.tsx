@@ -11,6 +11,7 @@ import { getScreen } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/utils/structs";
 import ContentList from "../src/components/ContentList";
 import { HeaderComponent } from "../src/components/HeaderComp";
+import { AppBarUI } from "../src/components/AppBar"
 
 interface ISeasonPageProps extends IContentProps, IRouteProps { }
 
@@ -28,21 +29,22 @@ function onClickItem(router: RouterProps, data: any) {
 
 function Chapters(props: { router: RouterProps, classes }) {
     const { classes } = props;
+    console.log("Chapters page", props, getScreen())
+    console.log("browser", (process as any).browser, process.env.NODE_ENV);
 
     return (
-        <div className={classes.root}>
-            <HeaderComponent>
-                <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
-                    <Flexbox />
-                    <div id="seasons">
-                        <ContentList {...props}
-                            onClickContent={(data) => onClickItem(props.router, data)}
-                        />
-                    </div>
-                    <Flexbox />
-                </Flexbox >
-            </HeaderComponent>
-        </div>
+        <HeaderComponent>
+            <AppBarUI />
+            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
+                <Flexbox />
+                <div id="Chapters">
+                    <ContentList {...props}
+                        onClickContent={(data) => onClickItem(props.router, data)}
+                    />
+                </div>
+                <Flexbox />
+            </Flexbox >
+        </HeaderComponent>
     );
 }
 const ChaptersPage = withRoot(withStyles(styles)(Chapters));

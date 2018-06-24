@@ -1,9 +1,10 @@
 import * as React from "react";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
 import Head from "next/head";
-import initApollo from "./initApollo";
 import ApolloClient from "apollo-client/ApolloClient";
 import { NormalizedCacheObject } from "apollo-cache-inmemory";
+
+import initApollo from "./initApollo";
 
 // Gets the display name of a JSX component for dev tools
 function getComponentDisplayName(Component: React.Component) {

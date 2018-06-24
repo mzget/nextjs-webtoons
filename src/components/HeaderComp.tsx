@@ -11,8 +11,13 @@ export function HeaderComponent(props) {
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
-                <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
+                {
+                    (process.env.NODE_ENV == "production") ?
+                        <React.Fragment>
+                            <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
+                            <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
+                        </React.Fragment> : null
+                }
             </Head>
             {
                 props.children

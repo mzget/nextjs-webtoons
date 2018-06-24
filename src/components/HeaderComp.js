@@ -1,8 +1,10 @@
-import * as React from "react";
-import Head from 'next/head';
-export function HeaderComponent(props) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const head_1 = require("next/head");
+function HeaderComponent(props) {
     return (<React.Fragment>
-            <Head>
+            <head_1.default>
                 <title>all-animes.appspot.com</title>
 
                 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"/>
@@ -14,7 +16,8 @@ export function HeaderComponent(props) {
                             <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b"/>
                             <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
                         </React.Fragment> : null}
-            </Head>
+            </head_1.default>
             {props.children}
         </React.Fragment>);
 }
+exports.HeaderComponent = HeaderComponent;

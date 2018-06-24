@@ -1,24 +1,26 @@
-import * as React from "react";
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import withRoot from '../lib/withRoot';
-import { HeaderComponent } from "../src/components/HeaderComp";
-import { AppBarUI } from "../src/components/AppBar";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const styles_1 = require("@material-ui/core/styles");
+const Typography_1 = require("@material-ui/core/Typography");
+const withRoot_1 = require("../src/lib/withRoot");
+const HeaderComp_1 = require("../src/components/HeaderComp");
+const AppBar_1 = require("../src/components/AppBar");
 const styles = theme => ({
     text: {
         padding: 16,
     },
 });
-export const About = (props) => {
+exports.About = (props) => {
     const { classes } = props;
     console.log("About page");
-    return (<HeaderComponent>
-            <AppBarUI />
+    return (<HeaderComp_1.HeaderComponent>
+            <AppBar_1.AppBarUI />
             <div className={classes.text}>
-                <Typography variant="title" color="inherit" className={classes.flex}>
+                <Typography_1.default variant="title" color="inherit" className={classes.flex}>
                     {`วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`}
-                </Typography>
+                </Typography_1.default>
             </div>
-        </HeaderComponent>);
+        </HeaderComp_1.HeaderComponent>);
 };
-export default withRoot(withStyles(styles, { withTheme: true })(About));
+exports.default = withRoot_1.default(styles_1.withStyles(styles, { withTheme: true })(exports.About));

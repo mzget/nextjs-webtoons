@@ -2,8 +2,8 @@ import * as React from "react";
 import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 
-import withRoot from '../lib/withRoot';
-import { ComposeApollo } from "../lib/withData";
+import withRoot from '../src/lib/withRoot';
+import withData from "../src/lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";
 import { HeaderComponent } from "../src/components/HeaderComp";
@@ -28,4 +28,4 @@ function Index(props: any) {
 }
 
 const PlayerPage = withRoot(withStyles(styles)(Index));
-export default ComposeApollo(PlayerPage);
+export default withData(PlayerPage);

@@ -1,7 +1,9 @@
-import * as React from "react";
-import { withRouter } from "next/router";
-import { graphql, compose } from "react-apollo";
-import { Content_QUERY } from "../queries/ProgramList";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const router_1 = require("next/router");
+const react_apollo_1 = require("react-apollo");
+const ProgramList_1 = require("../queries/ProgramList");
 function PlayContent(props) {
     const { loading, error, content } = props.data;
     console.info("PlayContent", props);
@@ -28,7 +30,7 @@ function PlayContent(props) {
                     </div>}
         </div>);
 }
-const PlayContentWithData = compose(graphql(Content_QUERY, {
+const PlayContentWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.Content_QUERY, {
     options: (props) => ({ variables: { episode: props.router.query.ep } }),
 }))(PlayContent);
-export default withRouter(PlayContentWithData);
+exports.default = router_1.withRouter(PlayContentWithData);

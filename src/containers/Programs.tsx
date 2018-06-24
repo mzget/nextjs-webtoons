@@ -17,21 +17,21 @@ interface IProgramsProps {
     classes: any,
 }
 
-const styles = (props) => {
-    return {
-        root: {
-            overflowX: "hidden",
-            width: `${props.width}`,
-            overflowY: "auto",
-        },
-        title: {
-            flex: 1,
-            padding: 16,
-        },
-        seasonList: {
-            flex: 1,
-        },
-    }
+
+const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
+const styles = {
+    root: {
+        overFlowX: "hidden",
+        width: `${programDiv}`,
+        overFlowY: "auto",
+    },
+    title: {
+        flex: 1,
+        padding: 16,
+    },
+    seasonList: {
+        flex: 1,
+    },
 };
 
 class Programs extends React.Component<IProgramsProps, any> {
@@ -57,8 +57,7 @@ class Programs extends React.Component<IProgramsProps, any> {
     }
 }
 
-const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
-const ProgramsUI = withStyles(styles({ width: programDiv }))(Programs);
+const ProgramsUI = withStyles(styles)(Programs);
 export default compose(
     graphql(List_QUERY, { name: "programs" }),
 )(ProgramsUI);

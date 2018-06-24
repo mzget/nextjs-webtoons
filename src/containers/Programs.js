@@ -1,25 +1,26 @@
-import * as React from "react";
-import { compose, graphql } from "react-apollo";
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import { getScreen, XSMALL } from "../utils/responsiveHelper";
-import { List_QUERY } from "../queries/ProgramList";
-import SeasonsList from "../components/SeasonsList";
-const styles = (props) => {
-    return {
-        root: {
-            overflowX: "hidden",
-            width: `${props.width}`,
-            overflowY: "auto",
-        },
-        title: {
-            flex: 1,
-            padding: 16,
-        },
-        seasonList: {
-            flex: 1,
-        },
-    };
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const react_apollo_1 = require("react-apollo");
+const Typography_1 = require("@material-ui/core/Typography");
+const styles_1 = require("@material-ui/core/styles");
+const responsiveHelper_1 = require("../utils/responsiveHelper");
+const ProgramList_1 = require("../queries/ProgramList");
+const SeasonsList_1 = require("../components/SeasonsList");
+const programDiv = (responsiveHelper_1.getScreen().appWidth <= responsiveHelper_1.XSMALL) ? "100%" : `${responsiveHelper_1.XSMALL}px`;
+const styles = {
+    root: {
+        overFlowX: "hidden",
+        width: `${programDiv}`,
+        overFlowY: "auto",
+    },
+    title: {
+        flex: 1,
+        padding: 16,
+    },
+    seasonList: {
+        flex: 1,
+    },
 };
 class Programs extends React.Component {
     render() {
@@ -30,16 +31,15 @@ class Programs extends React.Component {
         const program = programs.lists[0];
         return (<div id="program" className={classes.root}>
                 <div className={classes.title}>
-                    <Typography variant="title" color="inherit">
+                    <Typography_1.default variant="title" color="inherit">
                         {`รายชื่อตอน ${program.name.th} ${program.name.en.toUpperCase()}`}
-                    </Typography>
+                    </Typography_1.default>
                 </div>
                 <div className={classes.seasonList}>
-                    <SeasonsList />
+                    <SeasonsList_1.default />
                 </div>
             </div>);
     }
 }
-const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
-const ProgramsUI = withStyles(styles({ width: programDiv }))(Programs);
-export default compose(graphql(List_QUERY, { name: "programs" }))(ProgramsUI);
+const ProgramsUI = styles_1.withStyles(styles)(Programs);
+exports.default = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.List_QUERY, { name: "programs" }))(ProgramsUI);

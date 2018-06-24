@@ -43,19 +43,6 @@ interface ISeasonsProps {
     };
 }
 
-function getLists({ contents }: ISeasonsProps, seasonNo: number, onClickItem: (data: any) => void): JSX.Element[] {
-    const seasons = contents.contents.filter((content) => content.season.no === seasonNo);
-
-    return seasons.map((content, id) =>
-        <ListItem
-            key={id}
-            primaryText={`ตอนที่ ${content.epNo}`}
-            secondaryText={content.epName.th}
-            onClick={() => onClickItem(content.epNo)}
-        />,
-    );
-}
-
 const styles = theme => ({});
 
 function onClickItem(router: RouterProps, data: any) {
@@ -93,12 +80,12 @@ const SeasonsList = (props) => {
         </div>
     );
 }
-const SeasonsListUI = withStyles(styles)(SeasonsList);
+const SeasonsListUI = withStyles(styles)(withRouter(SeasonsList));
 const SeasonsListWithData = compose(
     graphql(Seasons_List, {
         name: "seasons",
         options: { variables: { programId: "5a26828bf37263b3e436a2d7" } },
     }),
-)(withRouter(SeasonsListUI));
+)(SeasonsListUI);
 
 export default SeasonsListWithData;

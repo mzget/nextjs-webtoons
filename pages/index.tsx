@@ -2,8 +2,8 @@ import * as React from "react";
 import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 
-import { ComposeApollo } from "../lib/withData";
-import withRoot from '../lib/withRoot';
+import withData from "../src/lib/withData";
+import withRoot from '../src/lib/withRoot';
 import { getScreen } from "../src/utils/responsiveHelper";
 import Programs from "../src/containers/Programs";
 import { HeaderComponent } from "../src/components/HeaderComp";
@@ -31,5 +31,5 @@ const Index = (props: any) => {
     );
 };
 
-const HomePage = withRoot(withStyles(styles, { withTheme: true })(Index));
-export default ComposeApollo(HomePage);
+const Page = withData(Index) as any;
+export default withRoot(withStyles(styles, { withTheme: true })(Page));

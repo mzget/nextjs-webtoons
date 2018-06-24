@@ -3,8 +3,8 @@ import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, RouterProps } from "next/router";
 
-import withRoot from '../lib/withRoot';
-import { ComposeApollo } from "../lib/withData";
+import withRoot from '../src/lib/withRoot';
+import withData from "../src/lib/withData";
 
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";
 import { IContentProps, IRouteProps } from "../src/utils/structs";
@@ -53,4 +53,4 @@ function Chapters(props: { router: RouterProps, classes }) {
 }
 
 const ChaptersPage = withRoot(withStyles(styles, { withTheme: true })(withRouter(Chapters)));
-export default ComposeApollo(ChaptersPage);
+export default withData(ChaptersPage);

@@ -1,13 +1,15 @@
-import * as React from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import getPageContext from './getPageContext';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const styles_1 = require("@material-ui/core/styles");
+const CssBaseline_1 = require("@material-ui/core/CssBaseline");
+const getPageContext_1 = require("./getPageContext");
 function withRoot(Component) {
     class WithRoot extends React.Component {
         constructor(props) {
             super(props);
             this.pageContext = null;
-            this.pageContext = this.props.pageContext || getPageContext();
+            this.pageContext = this.props.pageContext || getPageContext_1.default();
         }
         componentDidMount() {
             // Remove the server-side injected CSS.
@@ -18,11 +20,11 @@ function withRoot(Component) {
         }
         render() {
             // MuiThemeProvider makes the theme available down the React tree thanks to React context.
-            return (<MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
+            return (<styles_1.MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
                     
-                    <CssBaseline />
+                    <CssBaseline_1.default />
                     <Component {...this.props}/>
-                </MuiThemeProvider>);
+                </styles_1.MuiThemeProvider>);
         }
     }
     WithRoot.getInitialProps = ctx => {
@@ -33,4 +35,4 @@ function withRoot(Component) {
     };
     return WithRoot;
 }
-export default withRoot;
+exports.default = withRoot;

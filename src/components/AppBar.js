@@ -1,14 +1,16 @@
-import * as React from 'react';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
 // import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+const styles_1 = require("@material-ui/core/styles");
+const AppBar_1 = require("@material-ui/core/AppBar");
+const Toolbar_1 = require("@material-ui/core/Toolbar");
+const Typography_1 = require("@material-ui/core/Typography");
+const Button_1 = require("@material-ui/core/Button");
+const IconButton_1 = require("@material-ui/core/IconButton");
+const Menu_1 = require("@material-ui/icons/Menu");
 // This is the Link API
-import Link from "next/link";
+const link_1 = require("next/link");
 const styles = {
     root: {
         flexGrow: 1,
@@ -24,24 +26,24 @@ const styles = {
 function ButtonAppBar(props) {
     const { classes } = props;
     return (<div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                        <MenuIcon />
-                    </IconButton>
-                    <Link href="/">
-                        <Typography variant="title" color="inherit" className={classes.flex}>
+            <AppBar_1.default position="static">
+                <Toolbar_1.default>
+                    <IconButton_1.default className={classes.menuButton} color="inherit" aria-label="Menu">
+                        <Menu_1.default />
+                    </IconButton_1.default>
+                    <link_1.default href="/">
+                        <Typography_1.default variant="title" color="inherit" className={classes.flex}>
                             Home
-                        </Typography>
-                    </Link>
-                    <Link href="/about">
-                        <Button color="inherit">About</Button>
-                    </Link>
-                </Toolbar>
-            </AppBar>
+                        </Typography_1.default>
+                    </link_1.default>
+                    <link_1.default href="/about">
+                        <Button_1.default color="inherit">About</Button_1.default>
+                    </link_1.default>
+                </Toolbar_1.default>
+            </AppBar_1.default>
         </div>);
 }
 // ButtonAppBar.propTypes = {
 //     classes: PropTypes.object.isRequired,
 // };
-export const AppBarUI = withStyles(styles)(ButtonAppBar);
+exports.AppBarUI = styles_1.withStyles(styles)(ButtonAppBar);

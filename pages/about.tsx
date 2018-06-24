@@ -2,7 +2,7 @@ import * as  React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import withRoot from '../lib/withRoot';
+import withRoot from '../src/lib/withRoot';
 import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar"
 

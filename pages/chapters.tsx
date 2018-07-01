@@ -19,10 +19,7 @@ const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
 const styles = theme => ({
     root: {
         width: `${programDiv}`
-    },
-    list: {
-        flex: 1,
-    },
+    }
 });
 
 function onClickItem(router: RouterProps, data: any) {

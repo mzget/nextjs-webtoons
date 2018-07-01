@@ -16,7 +16,6 @@ function withData(ComposedComponent) {
         </react_apollo_1.ApolloProvider>);
         }
     }
-    ;
     WithData.displayName = `WithData(${ComposedComponent.name})`;
     WithData.getInitialProps = (ctx) => {
         // Initial serverState with apollo (empty)
@@ -39,8 +38,8 @@ function withData(ComposedComponent) {
             try {
                 // Run all GraphQL queries
                 react_apollo_1.getDataFromTree(<react_apollo_1.ApolloProvider client={apollo}>
-            <ComposedComponent url={url} {...composedInitialProps}/>
-          </react_apollo_1.ApolloProvider>);
+              <ComposedComponent url={url} {...composedInitialProps}/>
+            </react_apollo_1.ApolloProvider>);
             }
             catch (error) {
                 // Prevent Apollo Client GraphQL errors from crashing SSR.
@@ -59,6 +58,7 @@ function withData(ComposedComponent) {
         }
         return Object.assign({ serverState }, composedInitialProps);
     };
+    ;
     return WithData;
 }
 ;

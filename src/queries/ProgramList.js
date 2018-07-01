@@ -73,3 +73,17 @@ exports.Seasons_List = graphql_tag_1.default `query seasons($programId : String!
   }
 }
 `;
+exports.Season_Query = graphql_tag_1.default `
+query season($programId : String!, $id: Int!) {
+  season(programId: $programId, id: $id) {
+    no
+    name
+    programId
+    program {
+      name {
+        th
+        en
+      }
+    }
+  }
+}`;

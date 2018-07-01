@@ -14,6 +14,7 @@ if (!(<any>process).browser) {
 }
 
 // http://localhost:4000/api/graphql
+// https://awesome-barcode.appspot.com/api/graphql
 
 function create(initialState: any) {
   const link = new HttpLink({

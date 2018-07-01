@@ -7,26 +7,28 @@ export interface Content {
     epNo: string,
     epName: { th: string, en: string },
     name: { th: string, en: string },
-    season: { _id: string, name: string, no: number, programId: string },
+    season: ISeason,
+}
+
+export interface ISeason {
+    _id: string,
+    no: number,
+    name: string,
+    programId: number,
+    program: {
+        _id: string;
+        name: {
+            th: string;
+            en: string;
+        }
+    },
 }
 
 export interface ISeasonsProps {
     seasons: {
         loading: boolean,
         error: any,
-        seasons: Array<{
-            _id: string,
-            no: number,
-            name: string,
-            programId: number,
-            program: {
-                _id: string;
-                name: {
-                    th: string;
-                    en: string;
-                }
-            },
-        }>,
+        seasons: Array<ISeason>,
     };
 }
 

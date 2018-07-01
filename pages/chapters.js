@@ -14,10 +14,7 @@ const programDiv = (responsiveHelper_1.getScreen().appWidth <= responsiveHelper_
 const styles = theme => ({
     root: {
         width: `${programDiv}`
-    },
-    list: {
-        flex: 1,
-    },
+    }
 });
 function onClickItem(router, data) {
     router.push({

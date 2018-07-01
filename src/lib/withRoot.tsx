@@ -5,7 +5,15 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import getPageContext, { IPageContext } from './getPageContext';
 
 function withRoot(Component) {
-    class WithRoot extends React.Component {
+    class WithRoot extends React.Component<any, any> {
+
+        static getInitialProps = ctx => {
+            if (Component.getInitialProps) {
+                return Component.getInitialProps(ctx);
+            }
+
+            return {};
+        };
 
         pageContext = null as IPageContext | null;
 
@@ -37,14 +45,6 @@ function withRoot(Component) {
             );
         }
     }
-
-    WithRoot.getInitialProps = ctx => {
-        if (Component.getInitialProps) {
-            return Component.getInitialProps(ctx);
-        }
-
-        return {};
-    };
 
     return WithRoot;
 }

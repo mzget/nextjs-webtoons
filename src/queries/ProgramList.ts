@@ -75,3 +75,19 @@ export const Seasons_List = gql`query seasons($programId : String!) {
   }
 }
 `;
+
+
+export const Season_Query = gql`
+query season($programId : String!, $id: Int!) {
+  season(programId: $programId, id: $id) {
+    no
+    name
+    programId
+    program {
+      name {
+        th
+        en
+      }
+    }
+  }
+}`;

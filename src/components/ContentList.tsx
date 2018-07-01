@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 
 import { Contents_QUERY, Season_Query } from "../queries/ProgramList";
-import { IContentProps, IRouteProps, ISeason } from "../utils/structs";
+import { Content, IRouteProps, ISeason } from "../utils/structs";
 
 const styles = theme => ({
     root: {
@@ -21,12 +21,13 @@ const styles = theme => ({
     },
 });
 
-interface ISeasonPageProps extends IContentProps, IRouteProps {
+interface ISeasonPageProps extends IRouteProps {
     onClickContent: (ep: string) => void;
+    classes: any;
 }
 
 
-const SeasonQuery = ({ programId, id }, classes) => {
+const SeasonQuery = ({ classes }, { programId, id }) => {
     return (
         <Query query={Season_Query} variables={{ programId, id }}>
             {({ loading, error, data }) => {
@@ -48,47 +49,51 @@ const SeasonQuery = ({ programId, id }, classes) => {
     )
 };
 
-const ContentList = (props: ISeasonPageProps) => {
-    console.info("ContentList", props);
-    const { season } = props.router.query as any;
-    const { classes } = props;
+const ContentQuery = (props, { programId, seasonNo }) => {
+    return (
+        <Query query={Contents_QUERY} variables={{ programId, seasonNo }}>
+            {
+                ({ loading, error, data }) => {
+                    if (loading) return null;
+                    if (error) {
+                        return `Error!: ${error.message}`;
+                    }
 
-    if (props.contents.loading) {
-        return <p>Loading...</p>
-    }
-    const { contents } = props.contents;
-    const seasons = contents.filter((content) =>
-        content.season.no === parseInt(season));
+                    const contents = data.contents as Array<Content>
+                    return (
+                        <List component="nav">
+                            {
+                                contents.map((content, id) =>
+                                    <ListItem
+                                        key={id}
+                                        divider
+                                        button
+                                        onClick={() => props.onClickContent(content.epNo)}
+                                    >
+                                        <ListItemText primary={`ตอนที่ ${content.epNo}`} secondary={content.epName.th} />
+                                    </ListItem>,
+                                )
+                            }
+                        </List>
+                    );
+                }}
+        </Query>
+    );
+}
+
+const ContentList = (props: ISeasonPageProps) => {
+    const { season } = props.router.query as any;
 
     return (
         <div>
             {
-                SeasonQuery({ programId: "5a26828bf37263b3e436a2d7", id: parseInt(season) }, classes)
+                SeasonQuery(props, { programId: "5a26828bf37263b3e436a2d7", id: parseInt(season) })
             }
-            <List component="nav">
-                {
-                    seasons.map((content, id) =>
-                        <ListItem
-                            key={id}
-                            divider
-                            button
-                            onClick={() => props.onClickContent(content.epNo)}
-                        >
-                            <ListItemText primary={`ตอนที่ ${content.epNo}`} secondary={content.epName.th} />
-                        </ListItem>,
-                    )
-                }
-            </List>
+            {
+                ContentQuery(props, { programId: "5a26828bf37263b3e436a2d7", seasonNo: parseInt(season) })
+            }
         </div>
     );
 };
 
-const ContentListUI = withStyles(styles)(ContentList);
-const ContentListWithData = compose(
-    graphql(Contents_QUERY, {
-        name: "contents",
-        options: ({ }) => ({ variables: { programId: "5a26828bf37263b3e436a2d7" } }),
-    }),
-)(ContentListUI);
-
-export default ContentListWithData;
+export default withStyles(styles)(ContentList);

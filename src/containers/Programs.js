@@ -24,11 +24,11 @@ const styles = {
 };
 class Programs extends React.Component {
     render() {
-        const { programs, classes } = this.props;
-        if (programs.loading) {
+        const { data, classes } = this.props;
+        if (data.loading) {
             return <p>{`Loading...`}</p>;
         }
-        const program = programs.lists[0];
+        const program = data.lists[0];
         return (<div id="program" className={classes.root}>
                 <div className={classes.title}>
                     <Typography_1.default variant="title" color="inherit">
@@ -42,4 +42,4 @@ class Programs extends React.Component {
     }
 }
 const ProgramsUI = styles_1.withStyles(styles)(Programs);
-exports.default = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.List_QUERY, { name: "programs" }))(ProgramsUI);
+exports.default = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.List_QUERY))(ProgramsUI);

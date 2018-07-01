@@ -19,7 +19,7 @@ const styles = theme => ({
         padding: 16,
     },
 });
-const SeasonQuery = ({ programId, id }, classes) => {
+const SeasonQuery = ({ classes }, { programId, id }) => {
     return (<react_apollo_1.Query query={ProgramList_1.Season_Query} variables={{ programId, id }}>
             {({ loading, error, data }) => {
         if (loading)
@@ -36,27 +36,28 @@ const SeasonQuery = ({ programId, id }, classes) => {
     }}
         </react_apollo_1.Query>);
 };
+const ContentQuery = (props, { programId, seasonNo }) => {
+    return (<react_apollo_1.Query query={ProgramList_1.Contents_QUERY} variables={{ programId, seasonNo }}>
+            {({ loading, error, data }) => {
+        if (loading)
+            return null;
+        if (error) {
+            return `Error!: ${error.message}`;
+        }
+        const contents = data.contents;
+        return (<List_1.default component="nav">
+                            {contents.map((content, id) => <ListItem_1.default key={id} divider button onClick={() => props.onClickContent(content.epNo)}>
+                                        <ListItemText_1.default primary={`ตอนที่ ${content.epNo}`} secondary={content.epName.th}/>
+                                    </ListItem_1.default>)}
+                        </List_1.default>);
+    }}
+        </react_apollo_1.Query>);
+};
 const ContentList = (props) => {
-    console.info("ContentList", props);
     const { season } = props.router.query;
-    const { classes } = props;
-    if (props.contents.loading) {
-        return <p>Loading...</p>;
-    }
-    const { contents } = props.contents;
-    const seasons = contents.filter((content) => content.season.no === parseInt(season));
     return (<div>
-            {SeasonQuery({ programId: "5a26828bf37263b3e436a2d7", id: parseInt(season) }, classes)}
-            <List_1.default component="nav">
-                {seasons.map((content, id) => <ListItem_1.default key={id} divider button onClick={() => props.onClickContent(content.epNo)}>
-                            <ListItemText_1.default primary={`ตอนที่ ${content.epNo}`} secondary={content.epName.th}/>
-                        </ListItem_1.default>)}
-            </List_1.default>
+            {SeasonQuery(props, { programId: "5a26828bf37263b3e436a2d7", id: parseInt(season) })}
+            {ContentQuery(props, { programId: "5a26828bf37263b3e436a2d7", seasonNo: parseInt(season) })}
         </div>);
 };
-const ContentListUI = styles_1.withStyles(styles)(ContentList);
-const ContentListWithData = react_apollo_1.compose(react_apollo_1.graphql(ProgramList_1.Contents_QUERY, {
-    name: "contents",
-    options: ({}) => ({ variables: { programId: "5a26828bf37263b3e436a2d7" } }),
-}))(ContentListUI);
-exports.default = ContentListWithData;
+exports.default = styles_1.withStyles(styles)(ContentList);

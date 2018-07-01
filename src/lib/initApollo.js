@@ -12,11 +12,11 @@ console.log("browser", process.browser, process.env.NODE_ENV);
 if (!process.browser) {
     global.fetch = node_fetch_1.default;
 }
-// http://localhost:4000/api/graphql
+// http://localhost:8080/api/graphql
 // https://awesome-barcode.appspot.com/api/graphql
 function create(initialState) {
     const link = new apollo_link_http_1.HttpLink({
-        uri: "https://awesome-barcode.appspot.com/api/graphql",
+        uri: "http://localhost:8080/api/graphql",
         credentials: "same-origin",
     });
     return new apollo_client_1.ApolloClient({

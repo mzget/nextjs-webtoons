@@ -8,25 +8,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import { Seasons_List } from "../queries/ProgramList";
+import { ISeason, IRouteProps, ISeasonsProps } from "../utils/structs"
 
-interface ISeasonsProps {
-    seasons: {
-        loading: boolean,
-        error: any,
-        seasons: Array<{
-            _id: string,
-            no: number,
-            name: string,
-            programId: number,
-            program: {
-                _id: string;
-                name: {
-                    th: string;
-                    en: string;
-                }
-            },
-        }>,
-    };
+interface ICompProps extends ISeasonsProps, IRouteProps {
     contents: {
         loading: boolean,
         error: any,
@@ -41,6 +25,7 @@ interface ISeasonsProps {
             season: { _id: string, name: string, no: number, programId: string },
         }>,
     };
+    classes: any;
 }
 
 const styles = theme => ({});
@@ -52,20 +37,18 @@ function onClickItem(router: RouterProps, data: any) {
     });
 }
 
-const SeasonsList = (props) => {
-    const { classes } = props;
-    // const { contents } = props.contents;
-    const { seasons } = props.seasons;
-    const router = props.router as RouterProps;
+const SeasonsList = (props: ICompProps) => {
+    const { classes, seasons, router } = props;
 
-    console.info("seasons", props.seasons);
+    console.info("seasons", props);
 
     return (
         <div className={classes.root}>
             <List component="nav">
                 {
-                    (props.seasons.loading) ? <p>{`Loading...`}</p> :
-                        !!seasons && seasons.map((season) =>
+                    (props.seasons.loading) ?
+                        <p>{`Loading...`}</p> :
+                        !!seasons && seasons.seasons.map((season) =>
                             <ListItem
                                 key={season.no}
                                 button

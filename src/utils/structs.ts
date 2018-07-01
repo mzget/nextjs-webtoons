@@ -33,12 +33,10 @@ export interface ISeasonsProps {
 }
 
 export interface IContentProps {
-    contents: {
-        loading: boolean,
-        error: any,
-        lists: Array<{ id: number, name: { th: string, en: string } }>,
-        contents: Array<Content>,
-    };
+    loading: boolean;
+    error: any;
+    lists: Array<{ id: number, name: { th: string, en: string } }>;
+    contents: Array<Content>;
 }
 
 export interface IRouteProps {

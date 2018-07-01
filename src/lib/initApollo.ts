@@ -13,12 +13,12 @@ if (!(<any>process).browser) {
   (<any>global).fetch = fetch;
 }
 
-// http://localhost:4000/api/graphql
+// http://localhost:8080/api/graphql
 // https://awesome-barcode.appspot.com/api/graphql
 
 function create(initialState: any) {
   const link = new HttpLink({
-    uri: "https://awesome-barcode.appspot.com/api/graphql",
+    uri: "http://localhost:8080/api/graphql",
     credentials: "same-origin",
     // fetch,
   });

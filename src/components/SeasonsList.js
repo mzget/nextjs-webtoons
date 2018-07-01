@@ -16,15 +16,13 @@ function onClickItem(router, data) {
     });
 }
 const SeasonsList = (props) => {
-    const { classes } = props;
-    // const { contents } = props.contents;
-    const { seasons } = props.seasons;
-    const router = props.router;
-    console.info("seasons", props.seasons);
+    const { classes, seasons, router } = props;
+    console.info("seasons", props);
     return (<div className={classes.root}>
             <List_1.default component="nav">
-                {(props.seasons.loading) ? <p>{`Loading...`}</p> :
-        !!seasons && seasons.map((season) => <ListItem_1.default key={season.no} button divider onClick={() => onClickItem(router, season.no)}>
+                {(props.seasons.loading) ?
+        <p>{`Loading...`}</p> :
+        !!seasons && seasons.seasons.map((season) => <ListItem_1.default key={season.no} button divider onClick={() => onClickItem(router, season.no)}>
                                 <ListItemText_1.default primary={`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}/>
                             </ListItem_1.default>)}
             </List_1.default>

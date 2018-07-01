@@ -9,7 +9,7 @@ import { List_QUERY } from "../queries/ProgramList";
 import SeasonsList from "../components/SeasonsList";
 
 interface IProgramsProps {
-    programs: {
+    data: {
         loading: boolean,
         error: any,
         lists: Array<{ _id: string, name: { th: string, en: string } }>,
@@ -36,11 +36,12 @@ const styles = {
 
 class Programs extends React.Component<IProgramsProps, any> {
     render() {
-        const { programs, classes } = this.props;
-        if (programs.loading) {
+        const { data, classes } = this.props;
+
+        if (data.loading) {
             return <p>{`Loading...`}</p>
         }
-        const program = programs.lists[0];
+        const program = data.lists[0];
 
         return (
             <div id="program" className={classes.root} >
@@ -59,5 +60,5 @@ class Programs extends React.Component<IProgramsProps, any> {
 
 const ProgramsUI = withStyles(styles)(Programs);
 export default compose(
-    graphql(List_QUERY, { name: "programs" }),
+    graphql(List_QUERY),
 )(ProgramsUI);

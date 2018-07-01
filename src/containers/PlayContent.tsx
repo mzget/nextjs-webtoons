@@ -5,6 +5,8 @@ import { withRouter } from "next/router";
 import { Content_QUERY } from "../queries/ProgramList";
 import { Content, IRouteProps } from "../utils/structs";
 
+import SeasonHeader from "../components/SeasonHeader"
+
 export interface IContent extends IRouteProps {
     data: {
         loading: boolean,
@@ -16,8 +18,8 @@ export interface IContent extends IRouteProps {
 
 function PlayContent(props: IContent) {
     const { loading, error, content } = props.data;
+    const { ep, season } = props.router.query as any;
 
-    console.log("xxx", props);
     if (loading) {
         return <p>{loading}</p>
     }
@@ -28,9 +30,7 @@ function PlayContent(props: IContent) {
     return (
         <div>
             <div style={{ margin: 8 }}>
-                <p style={{ marginLeft: 12 }}>
-                    <strong>{`${content.season.program.name.th} ซีซั่น ${content.season.no} ${content.season.name}`}</strong>
-                </p>
+                <SeasonHeader programId={"5a26828bf37263b3e436a2d7"} id={parseInt(season)} />
                 <p style={{ marginLeft: 12 }}>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
                 <React.Fragment>
                     <video height={"480"} controls src={content.src}>

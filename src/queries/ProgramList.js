@@ -41,17 +41,6 @@ query content($episode : Int!) {
     }
     src
     seasonId
-    season {
-      _id
-      name
-      no    
-      program {
-        name {
-          th
-          en
-        }
-      }
-    }
     programId
   }
 }`;

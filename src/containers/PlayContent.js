@@ -4,9 +4,10 @@ const React = require("react");
 const react_apollo_1 = require("react-apollo");
 const router_1 = require("next/router");
 const ProgramList_1 = require("../queries/ProgramList");
+const SeasonHeader_1 = require("../components/SeasonHeader");
 function PlayContent(props) {
     const { loading, error, content } = props.data;
-    console.log("xxx", props);
+    const { ep, season } = props.router.query;
     if (loading) {
         return <p>{loading}</p>;
     }
@@ -15,9 +16,7 @@ function PlayContent(props) {
     }
     return (<div>
             <div style={{ margin: 8 }}>
-                <p style={{ marginLeft: 12 }}>
-                    <strong>{`${content.season.program.name.th} ซีซั่น ${content.season.no} ${content.season.name}`}</strong>
-                </p>
+                <SeasonHeader_1.default programId={"5a26828bf37263b3e436a2d7"} id={parseInt(season)}/>
                 <p style={{ marginLeft: 12 }}>{`ตอนที่ ${content.epNo} ${content.epName.th}`}</p>
                 <React.Fragment>
                     <video height={"480"} controls src={content.src}>

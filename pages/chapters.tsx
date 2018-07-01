@@ -22,10 +22,10 @@ const styles = theme => ({
     }
 });
 
-function onClickItem(router: RouterProps, data: any) {
+function onClickItem(router: RouterProps, { season, ep }) {
     router.push({
         pathname: "/play",
-        query: { ep: `${data}` },
+        query: { season, ep },
     });
 }
 
@@ -39,8 +39,8 @@ function Chapters(props: { router: RouterProps, classes }) {
             <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
                 <div id="Chapters" className={classes.root}>
                     <div>
-                        <ContentList {...props}
-                            onClickContent={(data) => onClickItem(props.router, data)}
+                        <ContentList  {...props} onClickContent={(season: string, ep: string) =>
+                            onClickItem(props.router, { season, ep })}
                         />
                     </div>
                 </div>

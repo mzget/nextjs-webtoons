@@ -1,13 +1,14 @@
 import * as React from 'react';
-import { compose, graphql, Query } from "react-apollo";
+import { Query } from "react-apollo";
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
 
-import { Contents_QUERY, Season_Query } from "../queries/ProgramList";
-import { Content, IRouteProps, ISeason } from "../utils/structs";
+import { Contents_QUERY } from "../queries/ProgramList";
+import { Content, IRouteProps } from "../utils/structs";
+
+import SeasonHeader from "./SeasonHeader";
 
 const styles = theme => ({
     root: {
@@ -22,34 +23,10 @@ const styles = theme => ({
 });
 
 interface ISeasonPageProps extends IRouteProps {
-    onClickContent: (ep: string) => void;
-    classes: any;
+    onClickContent: (season: string, ep: string) => void;
 }
 
-
-const SeasonQuery = ({ classes }, { programId, id }) => {
-    return (
-        <Query query={Season_Query} variables={{ programId, id }}>
-            {({ loading, error, data }) => {
-                if (loading) return null;
-                if (error) {
-                    return `Error!: ${error.message}`;
-                }
-
-                const season = data.season as ISeason;
-                return (
-                    <span className={classes.title}>
-                        <Typography variant="title" color="inherit" >
-                            {`${season.program.name.th} ซีซั่น ${season.no} ${season.name}`}
-                        </Typography>
-                    </span>
-                );
-            }}
-        </Query>
-    )
-};
-
-const ContentQuery = (props, { programId, seasonNo }) => {
+const ContentQuery = (props: ISeasonPageProps, { programId, seasonNo }) => {
     return (
         <Query query={Contents_QUERY} variables={{ programId, seasonNo }}>
             {
@@ -68,7 +45,7 @@ const ContentQuery = (props, { programId, seasonNo }) => {
                                         key={id}
                                         divider
                                         button
-                                        onClick={() => props.onClickContent(content.epNo)}
+                                        onClick={() => props.onClickContent(seasonNo, content.epNo)}
                                     >
                                         <ListItemText primary={`ตอนที่ ${content.epNo}`} secondary={content.epName.th} />
                                     </ListItem>,
@@ -86,9 +63,7 @@ const ContentList = (props: ISeasonPageProps) => {
 
     return (
         <div>
-            {
-                SeasonQuery(props, { programId: "5a26828bf37263b3e436a2d7", id: parseInt(season) })
-            }
+            <SeasonHeader programId={"5a26828bf37263b3e436a2d7"} id={parseInt(season)} />
             {
                 ContentQuery(props, { programId: "5a26828bf37263b3e436a2d7", seasonNo: parseInt(season) })
             }
@@ -96,4 +71,4 @@ const ContentList = (props: ISeasonPageProps) => {
     );
 };
 
-export default withStyles(styles)(ContentList);
+export default ContentList;

@@ -16,10 +16,10 @@ const styles = theme => ({
         width: `${programDiv}`
     }
 });
-function onClickItem(router, data) {
+function onClickItem(router, { season, ep }) {
     router.push({
         pathname: "/play",
-        query: { ep: `${data}` },
+        query: { season, ep },
     });
 }
 function Chapters(props) {
@@ -30,7 +30,7 @@ function Chapters(props) {
             <flexbox_react_1.default flexDirection="row" justifyContent="center" height={"100%"}>
                 <div id="Chapters" className={classes.root}>
                     <div>
-                        <ContentList_1.default {...props} onClickContent={(data) => onClickItem(props.router, data)}/>
+                        <ContentList_1.default {...props} onClickContent={(season, ep) => onClickItem(props.router, { season, ep })}/>
                     </div>
                 </div>
             </flexbox_react_1.default>

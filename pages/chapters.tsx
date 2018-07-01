@@ -7,19 +7,17 @@ import withRoot from '../src/lib/withRoot';
 import withData from "../src/lib/withData";
 
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";
-import { IContentProps, IRouteProps } from "../src/utils/structs";
 import ContentList from "../src/components/ContentList";
-import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar"
-
-interface ISeasonPageProps extends IContentProps, IRouteProps { }
+import { styles } from "../src/styles/pageStyle";
 
 
 const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
-const styles = theme => ({
-    root: {
+const pageStyles = theme => ({
+    contentBox: {
         width: `${programDiv}`
-    }
+    },
+    root: styles(theme).root
 });
 
 function onClickItem(router: RouterProps, { season, ep }) {
@@ -34,20 +32,20 @@ function Chapters(props: { router: RouterProps, classes }) {
     console.log("Chapters page", props, getScreen())
 
     return (
-        <HeaderComponent>
+        <React.Fragment>
             <AppBarUI />
-            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
-                <div id="Chapters" className={classes.root}>
-                    <div>
-                        <ContentList  {...props} onClickContent={(season: string, ep: string) =>
+            <div className={classes.root}>
+                <Flexbox flexDirection="row" justifyContent="center" >
+                    <div id="Chapters" className={classes.contentBox}>
+                        <ContentList router={props.router} onClickContent={(season: string, ep: string) =>
                             onClickItem(props.router, { season, ep })}
                         />
                     </div>
-                </div>
-            </Flexbox >
-        </HeaderComponent>
+                </Flexbox >
+            </div>
+        </React.Fragment>
     );
 }
 
-const ChaptersPage = withRoot(withStyles(styles, { withTheme: true })(withRouter(Chapters)));
+const ChaptersPage = withRoot(withStyles(pageStyles, { withTheme: true })(withRouter(Chapters)));
 export default withData(ChaptersPage);

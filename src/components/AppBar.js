@@ -26,7 +26,7 @@ const styles = {
 function ButtonAppBar(props) {
     const { classes } = props;
     return (<div className={classes.root}>
-            <AppBar_1.default position="static">
+            <AppBar_1.default position="fixed">
                 <Toolbar_1.default>
                     <IconButton_1.default className={classes.menuButton} color="inherit" aria-label="Menu">
                         <Menu_1.default />

@@ -6,28 +6,24 @@ import withData from "../src/lib/withData";
 import withRoot from '../src/lib/withRoot';
 import { getScreen } from "../src/utils/responsiveHelper";
 import Programs from "../src/containers/Programs";
-import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar";
+import { styles } from "../src/styles/pageStyle";
 
-const styles = theme => {
-    return ({
-        root: {
-            flex: 1
-        },
-    })
-};
 
+// calc(100vh-64px)
 const Index = (props: any) => {
     const { classes } = props;
     console.log("Home page", props, getScreen());
 
     return (
-        <HeaderComponent>
+        <React.Fragment>
             <AppBarUI />
-            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
-                <Programs />
-            </Flexbox>
-        </HeaderComponent>
+            <div className={classes.root}>
+                <Flexbox flexDirection="row" justifyContent="center">
+                    <Programs />
+                </Flexbox>
+            </div>
+        </React.Fragment >
     );
 };
 

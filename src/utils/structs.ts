@@ -40,7 +40,7 @@ export interface IContentProps {
 }
 
 export interface IRouteProps {
-    url: {
+    url?: {
         query: {
             ep: string,
             season: string,

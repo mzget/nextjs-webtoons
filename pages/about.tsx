@@ -17,14 +17,14 @@ export const About = (props: any) => {
     console.log("About page")
 
     return (
-        <HeaderComponent>
+        <div>
             <AppBarUI />
             <div className={classes.text}>
                 <Typography variant="title" color="inherit" className={classes.flex}>
                     {`วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`}
                 </Typography>
             </div>
-        </HeaderComponent>
+        </div>
     );
 }
 

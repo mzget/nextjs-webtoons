@@ -11,7 +11,7 @@ class MyDocument extends Document {
     return (
       <html lang="en" dir="ltr">
         <Head>
-          <title>My page</title>
+          <title>all-animes.appspot.com</title>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
@@ -23,10 +23,16 @@ class MyDocument extends Document {
           />
           {/* PWA primary color */}
           <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />
+
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+          {
+            (process.env.NODE_ENV == "production") ?
+              <React.Fragment>
+                <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
+                <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
+              </React.Fragment> : null
+          }
         </Head>
         <body>
           <Main />

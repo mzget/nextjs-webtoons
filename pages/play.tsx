@@ -6,26 +6,23 @@ import withRoot from '../src/lib/withRoot';
 import withData from "../src/lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";
-import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar";
-
-const styles = theme => ({
-    root: {
-    },
-});
+import { styles } from "../src/styles/pageStyle";
 
 function Index(props: any) {
     const { classes } = props;
 
     return (
-        <HeaderComponent>
+        <React.Fragment>
             <AppBarUI />
-            <Flexbox flexDirection="row" justifyContent="center" height={"100%"}>
-                <PlayContent {...props} />
-            </Flexbox>
-        </HeaderComponent>
+            <div className={classes.root}>
+                <Flexbox flexDirection="row" justifyContent="center" >
+                    <PlayContent {...props} />
+                </Flexbox>
+            </div>
+        </React.Fragment>
     );
 }
 
-const PlayerPage = withRoot(withStyles(styles)(Index));
+const PlayerPage = withRoot(withStyles(styles, { withTheme: true })(Index));
 export default withData(PlayerPage);

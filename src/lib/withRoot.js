@@ -20,11 +20,16 @@ function withRoot(Component) {
         }
         render() {
             // MuiThemeProvider makes the theme available down the React tree thanks to React context.
-            return (<styles_1.MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
-                    
-                    <CssBaseline_1.default />
-                    <Component {...this.props}/>
-                </styles_1.MuiThemeProvider>);
+            if (this.pageContext) {
+                return (<styles_1.MuiThemeProvider theme={this.pageContext.theme} sheetsManager={this.pageContext.sheetsManager}>
+                        
+                        <CssBaseline_1.default />
+                        <Component {...this.props}/>
+                    </styles_1.MuiThemeProvider>);
+            }
+            else {
+                return null;
+            }
         }
     }
     WithRoot.getInitialProps = ctx => {

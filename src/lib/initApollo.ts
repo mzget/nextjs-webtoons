@@ -18,7 +18,7 @@ if (!(<any>process).browser) {
 
 function create(initialState: any) {
   const link = new HttpLink({
-    uri: "http://localhost:8080/api/graphql",
+    uri: "https://awesome-barcode.appspot.com/api/graphql",
     credentials: "same-origin",
     // fetch,
   });

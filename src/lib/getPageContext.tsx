@@ -49,9 +49,9 @@ export default function getPageContext() {
   }
 
   // Reuse context on the client-side.
-  if (!global.__INIT_MATERIAL_UI__) {
-    global.__INIT_MATERIAL_UI__ = createPageContext();
+  if (!(global as any).__INIT_MATERIAL_UI__) {
+    (global as any).__INIT_MATERIAL_UI__ = createPageContext();
   }
 
-  return global.__INIT_MATERIAL_UI__;
+  return (global as any).__INIT_MATERIAL_UI__;
 }

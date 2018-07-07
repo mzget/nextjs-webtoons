@@ -16,7 +16,7 @@ if (!process.browser) {
 // https://awesome-barcode.appspot.com/api/graphql
 function create(initialState) {
     const link = new apollo_link_http_1.HttpLink({
-        uri: "http://localhost:8080/api/graphql",
+        uri: "https://awesome-barcode.appspot.com/api/graphql",
         credentials: "same-origin",
     });
     return new apollo_client_1.ApolloClient({

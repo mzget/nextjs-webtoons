@@ -5,26 +5,21 @@ import Typography from '@material-ui/core/Typography';
 import withRoot from '../src/lib/withRoot';
 import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar"
-
-const styles = theme => ({
-    text: {
-        padding: 16,
-    },
-});
+import { styles } from "../src/styles/pageStyle";
 
 export const About = (props: any) => {
     const { classes } = props;
     console.log("About page")
 
     return (
-        <div>
+        <React.Fragment>
             <AppBarUI />
-            <div className={classes.text}>
-                <Typography variant="title" color="inherit" className={classes.flex}>
+            <div className={classes.root}>
+                <Typography variant="title" color="inherit">
                     {`วันพีช One Piece การ์ตูนวันพีช ดูวันพีช รวมวันพีชทุกตอน`}
                 </Typography>
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 

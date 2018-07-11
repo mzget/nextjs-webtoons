@@ -3,7 +3,7 @@ import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, RouterProps } from "next/router";
 
-import withMaterial from '../src/lib/withRoot';
+import withMaterial from '../src/lib/withMaterial';
 import withData from "../src/lib/withData";
 
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";

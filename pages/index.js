@@ -4,7 +4,7 @@ const React = require("react");
 const flexbox_react_1 = require("flexbox-react");
 const styles_1 = require("@material-ui/core/styles");
 const withData_1 = require("../src/lib/withData");
-const withRoot_1 = require("../src/lib/withRoot");
+const withMaterial_1 = require("../src/lib/withMaterial");
 const responsiveHelper_1 = require("../src/utils/responsiveHelper");
 const Programs_1 = require("../src/containers/Programs");
 const AppBar_1 = require("../src/components/AppBar");
@@ -23,4 +23,4 @@ const Index = (props) => {
         </React.Fragment>);
 };
 const Page = withData_1.default(Index);
-exports.default = withRoot_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(Page));
+exports.default = withMaterial_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(Page));

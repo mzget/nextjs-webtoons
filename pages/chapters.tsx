@@ -3,7 +3,7 @@ import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter, RouterProps } from "next/router";
 
-import withRoot from '../src/lib/withRoot';
+import withMaterial from '../src/lib/withRoot';
 import withData from "../src/lib/withData";
 
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";
@@ -47,5 +47,5 @@ function Chapters(props: { router: RouterProps, classes }) {
     );
 }
 
-const ChaptersPage = withRoot(withStyles(pageStyles, { withTheme: true })(withRouter(Chapters)));
+const ChaptersPage = withMaterial(withStyles(pageStyles, { withTheme: true })(withRouter(Chapters)));
 export default withData(ChaptersPage);

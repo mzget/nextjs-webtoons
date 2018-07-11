@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const styles_1 = require("@material-ui/core/styles");
 const Typography_1 = require("@material-ui/core/Typography");
-const withRoot_1 = require("../src/lib/withRoot");
+const withMaterial_1 = require("../src/lib/withMaterial");
 const AppBar_1 = require("../src/components/AppBar");
 const pageStyle_1 = require("../src/styles/pageStyle");
 exports.About = (props) => {
@@ -18,4 +18,4 @@ exports.About = (props) => {
             </div>
         </React.Fragment>);
 };
-exports.default = withRoot_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(exports.About));
+exports.default = withMaterial_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(exports.About));

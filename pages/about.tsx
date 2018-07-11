@@ -2,7 +2,7 @@ import * as  React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import withRoot from '../src/lib/withRoot';
+import withMaterial from '../src/lib/withMaterial';
 import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar"
 import { styles } from "../src/styles/pageStyle";
@@ -23,4 +23,4 @@ export const About = (props: any) => {
     );
 }
 
-export default withRoot(withStyles(styles, { withTheme: true })(About));
+export default withMaterial(withStyles(styles, { withTheme: true })(About));

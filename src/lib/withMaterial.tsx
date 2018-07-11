@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import getPageContext, { IPageContext } from './getPageContext';
 
-function withRoot(Component) {
+function withMaterial(Component) {
     class WithRoot extends React.Component<any, any> {
 
         static getInitialProps = ctx => {
@@ -54,4 +54,4 @@ function withRoot(Component) {
     return WithRoot;
 }
 
-export default withRoot;
+export default withMaterial;

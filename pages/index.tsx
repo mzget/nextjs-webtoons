@@ -3,7 +3,7 @@ import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 
 import withData from "../src/lib/withData";
-import withRoot from '../src/lib/withRoot';
+import withMaterial from '../src/lib/withMaterial';
 import { getScreen } from "../src/utils/responsiveHelper";
 import Programs from "../src/containers/Programs";
 import { AppBarUI } from "../src/components/AppBar";
@@ -28,4 +28,4 @@ const Index = (props: any) => {
 };
 
 const Page = withData(Index) as any;
-export default withRoot(withStyles(styles, { withTheme: true })(Page));
+export default withMaterial(withStyles(styles, { withTheme: true })(Page));

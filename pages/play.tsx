@@ -2,7 +2,7 @@ import * as React from "react";
 import Flexbox from "flexbox-react";
 import { withStyles } from '@material-ui/core/styles';
 
-import withRoot from '../src/lib/withRoot';
+import withMaterial from '../src/lib/withMaterial';
 import withData from "../src/lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";
@@ -24,5 +24,5 @@ function Index(props: any) {
     );
 }
 
-const PlayerPage = withRoot(withStyles(styles, { withTheme: true })(Index));
+const PlayerPage = withMaterial(withStyles(styles, { withTheme: true })(Index));
 export default withData(PlayerPage);

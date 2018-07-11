@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const flexbox_react_1 = require("flexbox-react");
 const styles_1 = require("@material-ui/core/styles");
-const withRoot_1 = require("../src/lib/withRoot");
+const withMaterial_1 = require("../src/lib/withMaterial");
 const withData_1 = require("../src/lib/withData");
 const PlayContent_1 = require("../src/containers/PlayContent");
 const AppBar_1 = require("../src/components/AppBar");
@@ -19,5 +19,5 @@ function Index(props) {
             </div>
         </React.Fragment>);
 }
-const PlayerPage = withRoot_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(Index));
+const PlayerPage = withMaterial_1.default(styles_1.withStyles(pageStyle_1.styles, { withTheme: true })(Index));
 exports.default = withData_1.default(PlayerPage);

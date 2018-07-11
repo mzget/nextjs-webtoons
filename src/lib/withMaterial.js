@@ -4,7 +4,7 @@ const React = require("react");
 const styles_1 = require("@material-ui/core/styles");
 const CssBaseline_1 = require("@material-ui/core/CssBaseline");
 const getPageContext_1 = require("./getPageContext");
-function withRoot(Component) {
+function withMaterial(Component) {
     class WithRoot extends React.Component {
         constructor(props) {
             super(props);
@@ -40,4 +40,4 @@ function withRoot(Component) {
     };
     return WithRoot;
 }
-exports.default = withRoot;
+exports.default = withMaterial;

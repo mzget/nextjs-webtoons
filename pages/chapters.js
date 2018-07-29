@@ -11,11 +11,11 @@ const ContentList_1 = require("../src/components/ContentList");
 const AppBar_1 = require("../src/components/AppBar");
 const pageStyle_1 = require("../src/styles/pageStyle");
 const programDiv = (responsiveHelper_1.getScreen().appWidth <= responsiveHelper_1.XSMALL) ? "100%" : `${responsiveHelper_1.XSMALL}px`;
-const pageStyles = theme => ({
+const pageStyles = (theme) => ({
     contentBox: {
-        width: `${programDiv}`
+        width: `${programDiv}`,
     },
-    root: pageStyle_1.styles(theme).root
+    root: pageStyle_1.styles(theme).root,
 });
 function onClickItem(router, { season, ep }) {
     router.push({
@@ -25,7 +25,7 @@ function onClickItem(router, { season, ep }) {
 }
 function Chapters(props) {
     const { classes } = props;
-    console.log("Chapters page", props, responsiveHelper_1.getScreen());
+    console.log("Chapters page", responsiveHelper_1.getScreen());
     return (<React.Fragment>
             <AppBar_1.AppBarUI />
             <div className={classes.root}>

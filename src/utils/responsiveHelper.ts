@@ -1,5 +1,5 @@
-var appWidth: number = 0;
-var appHeight = 0;
+let appWidth: number = 0;
+let appHeight = 0;
 
 export const XSMALL = 600;
 export const SMALL = 840;

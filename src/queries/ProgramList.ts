@@ -64,7 +64,6 @@ query seasons($programId : String!) {
 }
 `;
 
-
 export const Season_Query = gql`
 query season($programId : String!, $id: Int!) {
   season(programId: $programId, id: $id) {

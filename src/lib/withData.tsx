@@ -76,9 +76,9 @@ function withData(ComposedComponent) {
         </ApolloProvider>
       );
     }
-  };
+  }
 
   return WithData;
-};
+}
 
 export default withData;

@@ -8,7 +8,7 @@ const List_1 = require("@material-ui/core/List");
 const ListItem_1 = require("@material-ui/core/ListItem");
 const ListItemText_1 = require("@material-ui/core/ListItemText");
 const ProgramList_1 = require("../queries/ProgramList");
-const styles = theme => ({});
+const styles = (theme) => ({});
 function onClickItem(router, data) {
     router.push({
         pathname: "/chapters",
@@ -17,7 +17,7 @@ function onClickItem(router, data) {
 }
 const SeasonsList = (props) => {
     const { classes, seasons, router } = props;
-    console.info("seasons", props);
+    console.info("seasons data: ", props.seasons);
     return (<div className={classes.root}>
             <List_1.default component="nav">
                 {(props.seasons.loading) ?

@@ -13,7 +13,7 @@ function withMaterial(Component) {
         }
         componentDidMount() {
             // Remove the server-side injected CSS.
-            const jssStyles = document.querySelector('#jss-server-side');
+            const jssStyles = document.querySelector("#jss-server-side");
             if (jssStyles && jssStyles.parentNode) {
                 jssStyles.parentNode.removeChild(jssStyles);
             }
@@ -32,7 +32,7 @@ function withMaterial(Component) {
             }
         }
     }
-    WithRoot.getInitialProps = ctx => {
+    WithRoot.getInitialProps = (ctx) => {
         if (Component.getInitialProps) {
             return Component.getInitialProps(ctx);
         }

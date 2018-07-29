@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var appWidth = 0;
-var appHeight = 0;
+let appWidth = 0;
+let appHeight = 0;
 exports.XSMALL = 600;
 exports.SMALL = 840;
 exports.MEDIUM = 960;

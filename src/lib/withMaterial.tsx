@@ -1,19 +1,19 @@
-import * as React from 'react';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import * as React from "react";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import getPageContext, { IPageContext } from './getPageContext';
+import getPageContext, { IPageContext } from "./getPageContext";
 
 function withMaterial(Component) {
     class WithRoot extends React.Component<any, any> {
 
-        static getInitialProps = ctx => {
+        static getInitialProps = (ctx) => {
             if (Component.getInitialProps) {
                 return Component.getInitialProps(ctx);
             }
 
             return {};
-        };
+        }
 
         pageContext = null as IPageContext | null;
 
@@ -25,7 +25,7 @@ function withMaterial(Component) {
 
         componentDidMount() {
             // Remove the server-side injected CSS.
-            const jssStyles = document.querySelector('#jss-server-side');
+            const jssStyles = document.querySelector("#jss-server-side");
             if (jssStyles && jssStyles.parentNode) {
                 jssStyles.parentNode.removeChild(jssStyles);
             }
@@ -44,9 +44,8 @@ function withMaterial(Component) {
                         <Component {...this.props} />
                     </MuiThemeProvider>
                 );
-            }
-            else {
-                return null
+            } else {
+                return null;
             }
         }
     }

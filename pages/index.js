@@ -12,7 +12,7 @@ const pageStyle_1 = require("../src/styles/pageStyle");
 // calc(100vh-64px)
 const Index = (props) => {
     const { classes } = props;
-    console.log("Home page", props, responsiveHelper_1.getScreen());
+    console.log("Home: ", props, responsiveHelper_1.getScreen());
     return (<React.Fragment>
             <AppBar_1.AppBarUI />
             <div className={classes.root}>

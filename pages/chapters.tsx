@@ -1,23 +1,22 @@
 import * as React from "react";
 import Flexbox from "flexbox-react";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 import { withRouter, RouterProps } from "next/router";
 
-import withMaterial from '../src/lib/withMaterial';
+import withMaterial from "../src/lib/withMaterial";
 import withData from "../src/lib/withData";
 
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";
 import ContentList from "../src/components/ContentList";
-import { AppBarUI } from "../src/components/AppBar"
+import { AppBarUI } from "../src/components/AppBar";
 import { styles } from "../src/styles/pageStyle";
 
-
 const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
-const pageStyles = theme => ({
+const pageStyles = (theme) => ({
     contentBox: {
-        width: `${programDiv}`
+        width: `${programDiv}`,
     },
-    root: styles(theme).root
+    root: styles(theme).root,
 });
 
 function onClickItem(router: RouterProps, { season, ep }) {
@@ -29,7 +28,8 @@ function onClickItem(router: RouterProps, { season, ep }) {
 
 function Chapters(props: { router: RouterProps, classes }) {
     const { classes } = props;
-    console.log("Chapters page", props, getScreen())
+
+    console.log("Chapters page", getScreen());
 
     return (
         <React.Fragment>

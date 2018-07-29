@@ -7,10 +7,10 @@ let apolloClient = null as ApolloClient<NormalizedCacheObject> | null;
 
 // if (process.env.NODE_ENV !== "development") {
 // }
-console.log("browser", (<any>process).browser, process.env.NODE_ENV);
+console.log("browser", (<any> process).browser, process.env.NODE_ENV);
 // Polyfill fetch() on the server (used by apollo-client)
-if (!(<any>process).browser) {
-  (<any>global).fetch = fetch;
+if (!(<any> process).browser) {
+  (<any> global).fetch = fetch;
 }
 
 // http://localhost:8080/api/graphql
@@ -24,8 +24,8 @@ function create(initialState: any) {
   });
 
   return new ApolloClient({
-    connectToDevTools: (<any>process).browser,
-    ssrMode: true, //!process.browser, // Disables forceFetch on the server (so queries are only run once)
+    connectToDevTools: (<any> process).browser,
+    ssrMode: true, // !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link,
     cache: new InMemoryCache().restore(initialState || {}),
   });
@@ -34,7 +34,7 @@ function create(initialState: any) {
 export default function initApollo(initialState?: any) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
-  if (!(<any>process).browser) {
+  if (!(<any> process).browser) {
     return create(initialState);
   }
 

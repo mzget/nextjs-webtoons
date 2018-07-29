@@ -2,13 +2,13 @@ import * as React from "react";
 import { compose, graphql } from "react-apollo";
 import { withRouter, RouterProps } from "next/router";
 
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 import { Seasons_List } from "../queries/ProgramList";
-import { ISeason, IRouteProps, ISeasonsProps } from "../utils/structs"
+import { ISeason, IRouteProps, ISeasonsProps } from "../utils/structs";
 
 interface ICompProps extends ISeasonsProps, IRouteProps {
     contents: {
@@ -28,7 +28,7 @@ interface ICompProps extends ISeasonsProps, IRouteProps {
     classes: any;
 }
 
-const styles = theme => ({});
+const styles = (theme) => ({});
 
 function onClickItem(router: RouterProps, data: any) {
     router.push({
@@ -40,7 +40,7 @@ function onClickItem(router: RouterProps, data: any) {
 const SeasonsList = (props: ICompProps) => {
     const { classes, seasons, router } = props;
 
-    console.info("seasons", props);
+    console.info("seasons data: ", props.seasons);
 
     return (
         <div className={classes.root}>
@@ -62,7 +62,7 @@ const SeasonsList = (props: ICompProps) => {
             </List>
         </div>
     );
-}
+};
 const SeasonsListUI = withStyles(styles)(withRouter(SeasonsList));
 const SeasonsListWithData = compose(
     graphql(Seasons_List, {

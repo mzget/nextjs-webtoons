@@ -1,8 +1,8 @@
 import * as React from "react";
 import Flexbox from "flexbox-react";
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from "@material-ui/core/styles";
 
-import withMaterial from '../src/lib/withMaterial';
+import withMaterial from "../src/lib/withMaterial";
 import withData from "../src/lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";

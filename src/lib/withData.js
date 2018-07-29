@@ -58,8 +58,6 @@ function withData(ComposedComponent) {
         }
         return Object.assign({ serverState }, composedInitialProps);
     };
-    ;
     return WithData;
 }
-;
 exports.default = withData;

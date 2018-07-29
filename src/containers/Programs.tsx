@@ -1,7 +1,7 @@
 import * as React from "react";
 import { compose, graphql } from "react-apollo";
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
 
 import { getScreen, XSMALL } from "../utils/responsiveHelper";
 import { List_QUERY } from "../queries/ProgramList";
@@ -14,9 +14,8 @@ interface IProgramsProps {
         error: any,
         lists: Array<{ _id: string, name: { th: string, en: string } }>,
     };
-    classes: any,
+    classes: any;
 }
-
 
 const programDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
 const styles = {
@@ -34,7 +33,7 @@ class Programs extends React.Component<IProgramsProps, any> {
         const { data, classes } = this.props;
 
         if (data.loading) {
-            return <p>{`Loading...`}</p>
+            return <p>{`Loading...`}</p>;
         }
         const program = data.lists[0];
 

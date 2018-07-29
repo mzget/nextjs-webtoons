@@ -2,7 +2,6 @@ import * as React from "react";
 import Flexbox from "flexbox-react";
 import { withStyles } from "@material-ui/core/styles";
 
-import withData from "../src/lib/withData";
 import withMaterial from "../src/lib/withMaterial";
 import { getScreen } from "../src/utils/responsiveHelper";
 import Programs from "../src/containers/Programs";
@@ -27,5 +26,4 @@ const Index = (props: any) => {
     );
 };
 
-const Page = withData(Index) as any;
-export default withMaterial(withStyles(styles, { withTheme: true })(Page));
+export default withMaterial(withStyles(styles, { withTheme: true })(Index));

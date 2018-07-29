@@ -1,18 +1,18 @@
-import * as React from 'react';
+import * as React from "react";
 import { Query } from "react-apollo";
-import { withStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import { withStyles } from "@material-ui/core/styles";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
 
 import { Contents_QUERY } from "../queries/ProgramList";
-import { Content, IRouteProps } from "../utils/structs";
+import { IContent, IRouteProps } from "../utils/structs";
 
 import SeasonHeader from "./SeasonHeader";
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
-        width: '100%',
+        width: "100%",
         maxWidth: 360,
         backgroundColor: theme.palette.background.paper,
     },
@@ -31,12 +31,12 @@ const ContentQuery = (props: ISeasonPageProps, { programId, seasonNo }) => {
         <Query query={Contents_QUERY} variables={{ programId, seasonNo }}>
             {
                 ({ loading, error, data }) => {
-                    if (loading) return null;
+                    if (loading) { return null; }
                     if (error) {
                         return `Error!: ${error.message}`;
                     }
 
-                    const contents = data.contents as Array<Content>
+                    const contents = data.contents as IContent[];
                     return (
                         <List component="nav">
                             {
@@ -56,7 +56,7 @@ const ContentQuery = (props: ISeasonPageProps, { programId, seasonNo }) => {
                 }}
         </Query>
     );
-}
+};
 
 const ContentList = (props: ISeasonPageProps) => {
     const { season } = props.router.query as any;

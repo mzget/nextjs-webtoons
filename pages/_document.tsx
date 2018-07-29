@@ -1,8 +1,8 @@
-import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
-import JssProvider from 'react-jss/lib/JssProvider';
-import flush from 'styled-jsx/server';
-import getPageContext from '../src/lib/getPageContext';
+import * as React from "react";
+import Document, { Head, Main, NextScript } from "next/document";
+import JssProvider from "react-jss/lib/JssProvider";
+import flush from "styled-jsx/server";
+import getPageContext from "../src/lib/getPageContext";
 
 class MyDocument extends Document {
   render() {
@@ -17,8 +17,8 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-              'user-scalable=0, initial-scale=1, ' +
-              'minimum-scale=1, width=device-width, height=device-height'
+              "user-scalable=0, initial-scale=1, " +
+              "minimum-scale=1, width=device-width, height=device-height"
             }
           />
           {/* PWA primary color */}
@@ -27,7 +27,7 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" />
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           {
-            (process.env.NODE_ENV == "production") ?
+            (process.env.NODE_ENV === "production") ?
               <React.Fragment>
                 <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
                 <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
@@ -43,7 +43,7 @@ class MyDocument extends Document {
   }
 }
 
-MyDocument.getInitialProps = ctx => {
+MyDocument.getInitialProps = (ctx) => {
   // Resolution order
   //
   // On the server:
@@ -63,7 +63,7 @@ MyDocument.getInitialProps = ctx => {
 
   // Get the context of the page to collected side effects.
   const pageContext = getPageContext();
-  const page = ctx.renderPage(Component => props => (
+  const page = ctx.renderPage((Component) => (props) => (
     <JssProvider
       registry={pageContext.sheetsRegistry}
       generateClassName={pageContext.generateClassName}

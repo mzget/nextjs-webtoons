@@ -4,8 +4,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { withRouter, RouterProps } from "next/router";
 
 import withMaterial from "../src/lib/withMaterial";
-import withData from "../src/lib/withData";
-
 import { getScreen, SMALL, XSMALL } from "../src/utils/responsiveHelper";
 import ContentList from "../src/components/ContentList";
 import { AppBarUI } from "../src/components/AppBar";
@@ -47,5 +45,4 @@ function Chapters(props: { router: RouterProps, classes }) {
     );
 }
 
-const ChaptersPage = withMaterial(withStyles(pageStyles, { withTheme: true })(withRouter(Chapters)));
-export default withData(ChaptersPage);
+export default withMaterial(withStyles(pageStyles, { withTheme: true })(withRouter(Chapters)));

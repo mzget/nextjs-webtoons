@@ -5,8 +5,9 @@ export const styles = (theme) => {
         root: {
             flex: 1,
             marginTop: `64px`,
-            backgroundColor: grey["100"],
-            height: `calc(100vh - 64px)`,
+            backgroundColor: grey["200"],
+            height: `100%`,
+            minHeight: `calc(100vh - 64px)`,
         },
     });
 };

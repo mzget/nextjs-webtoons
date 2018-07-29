@@ -11,7 +11,8 @@
         "member-access": false,
         "no-angle-bracket-type-assertion": false,
         "no-console": false,
-        "radix": false
+        "radix": false,
+        "no-var-requires": false
     },
     "rulesDirectory": []
 }

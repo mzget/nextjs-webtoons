@@ -3,16 +3,16 @@ import { graphql, compose } from "react-apollo";
 import { withRouter } from "next/router";
 
 import { Content_QUERY } from "../queries/ProgramList";
-import { Content, IRouteProps } from "../utils/structs";
+import { IContent, IRouteProps } from "../utils/structs";
 
-import SeasonHeader from "../components/SeasonHeader"
+import SeasonHeader from "../components/SeasonHeader";
 
 export interface IContent extends IRouteProps {
     data: {
         loading: boolean,
         error: any,
         lists: Array<{ id: number, name: { th: string, en: string } }>,
-        content: Content,
+        content: IContent,
     };
 }
 
@@ -21,10 +21,10 @@ function PlayContent(props: IContent) {
     const { ep, season } = props.router.query as any;
 
     if (loading) {
-        return <p>{loading}</p>
+        return <p>{loading}</p>;
     }
     if (error) {
-        return <p>{error.message}</p>
+        return <p>{error.message}</p>;
     }
 
     return (
@@ -41,7 +41,6 @@ function PlayContent(props: IContent) {
         </div>
     );
 }
-
 
 const PlayContentWithData = compose(
     graphql(Content_QUERY, {

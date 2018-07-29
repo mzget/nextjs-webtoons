@@ -3,7 +3,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
 import withMaterial from "../src/lib/withMaterial";
-import { HeaderComponent } from "../src/components/HeaderComp";
 import { AppBarUI } from "../src/components/AppBar";
 import { styles } from "../src/styles/pageStyle";
 

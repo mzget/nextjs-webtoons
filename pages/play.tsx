@@ -3,7 +3,6 @@ import Flexbox from "flexbox-react";
 import { withStyles } from "@material-ui/core/styles";
 
 import withMaterial from "../src/lib/withMaterial";
-import withData from "../src/lib/withData";
 
 import PlayContent from "../src/containers/PlayContent";
 import { AppBarUI } from "../src/components/AppBar";
@@ -24,5 +23,4 @@ function Index(props: any) {
     );
 }
 
-const PlayerPage = withMaterial(withStyles(styles, { withTheme: true })(Index));
-export default withData(PlayerPage);
+export default withMaterial(withStyles(styles, { withTheme: true })(Index));

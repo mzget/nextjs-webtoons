@@ -5,7 +5,8 @@ import { withStyles, StyleRulesCallback } from "@material-ui/core/styles";
 import { grey, common } from "@material-ui/core/colors";
 
 import { getScreen, SMALL, XSMALL } from "../utils/responsiveHelper";
-import { ListQUERY } from "../queries/ProgramList";
+import { ProgramsComp } from "./ProgramsSelectComp";
+import { SeasonsComp } from "./SeasonSelectComp";
 
 const contentDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
 const styles = (theme) => ({
@@ -35,43 +36,8 @@ const styles = (theme) => ({
 interface IAddContentProps {
     name: string;
     programId: string;
+    seasonId: string;
 }
-
-const ProgramsComp = ({ classes, value, handleChange }) => (
-    <Query query={ListQUERY} >
-        {
-            ({ loading, error, data }) => {
-                if (loading) { return null; }
-                if (error) { return `Error!: ${error}`; }
-
-                const lists = data.lists;
-
-                return (
-                    <TextField label="select-programId"
-                        select
-                        className={classes.textField}
-                        value={value}
-                        onChange={handleChange("programId")}
-                        SelectProps={{
-                            native: true,
-                            MenuProps: {
-                                className: classes.menu,
-                            },
-                        }}
-                        margin="normal"
-                    >
-                        <option value="" />
-                        {lists.map((option) => (
-                            <option key={option._id} value={option._id}>
-                                {option.name.en}
-                            </option>
-                        ))}
-                    </TextField>
-                );
-            }
-        }
-    </Query>
-);
 
 class AddContent extends React.Component<any, IAddContentProps> {
     event; constructor(props) {
@@ -80,6 +46,7 @@ class AddContent extends React.Component<any, IAddContentProps> {
         this.state = {
             name: "",
             programId: "",
+            seasonId: "",
         };
 
         this.handleChange.bind(this);
@@ -89,7 +56,7 @@ class AddContent extends React.Component<any, IAddContentProps> {
         // test
         console.log(name, event.target.value);
         // @ts-ignore
-        this.setState({ [name]: event.target.value });
+        this.setState({ [name]: event.target.value }, () => console.info(this.state));
     }
 
     render() {
@@ -159,14 +126,9 @@ class AddContent extends React.Component<any, IAddContentProps> {
                         className={classes.textField}
                         margin="normal"
                     />
-                    <TextField
-                        id="search"
-                        label="Search field"
-                        type="search"
-                        className={classes.textField}
-                        margin="normal"
-                    />
                     <ProgramsComp {...this.props} value={this.state.programId} handleChange={this.handleChange} />
+                    <SeasonsComp {...this.props} programId={this.state.programId} value={this.state.seasonId} handleChange={this.handleChange} />
+
                     <TextField
                         id="full-width"
                         label="Src"

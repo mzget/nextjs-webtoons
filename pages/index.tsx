@@ -8,22 +8,31 @@ import Programs from "../src/containers/Programs";
 import { AppBarUI } from "../src/components/AppBar";
 import { styles } from "../src/styles/pageStyle";
 
-// calc(100vh-64px)
-const Index = (props: any) => {
-    const { classes } = props;
+class Home extends React.Component<any> {
+    static displayName = "Home";
 
-    console.log("Home: ", props, getScreen());
+    constructor(props) {
+        super(props);
 
-    return (
-        <React.Fragment>
-            <AppBarUI />
-            <div className={classes.root}>
-                <Flexbox flexDirection="row" justifyContent="center">
-                    <Programs />
-                </Flexbox>
-            </div>
-        </React.Fragment >
-    );
-};
+        console.log("Screen: ", getScreen());
 
-export default withMaterial(withStyles(styles, { withTheme: true })(Index));
+        console.log("Home: ", this.props);
+    }
+
+    render() {
+        const { classes } = this.props;
+
+        return (
+            <React.Fragment>
+                <AppBarUI />
+                <div className={classes.root}>
+                    <Flexbox flexDirection="row" justifyContent="center">
+                        <Programs />
+                    </Flexbox>
+                </div>
+            </React.Fragment >
+        );
+    }
+}
+
+export default withMaterial(withStyles(styles, { withTheme: true })(Home));

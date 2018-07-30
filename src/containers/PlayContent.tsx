@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql, compose } from "react-apollo";
 import { withRouter } from "next/router";
 
-import { Content_QUERY } from "../queries/ProgramList";
+import { ContentQUERY } from "../queries/ProgramList";
 import { IContent, IRouteProps } from "../utils/structs";
 
 import SeasonHeader from "../components/SeasonHeader";
@@ -43,7 +43,7 @@ function PlayContent(props: IContent) {
 }
 
 const PlayContentWithData = compose(
-    graphql(Content_QUERY, {
+    graphql(ContentQUERY, {
         options: (props: IContent) => ({ variables: { episode: (props.router.query as any).ep } }),
     }),
 )(PlayContent);

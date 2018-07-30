@@ -7,7 +7,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import { Seasons_List } from "../queries/ProgramList";
+import { SeasonsQuery } from "../queries/ProgramList";
 import { ISeason, IRouteProps, ISeasonsProps } from "../utils/structs";
 
 interface ICompProps extends ISeasonsProps, IRouteProps {
@@ -65,7 +65,7 @@ const SeasonsList = (props: ICompProps) => {
 };
 const SeasonsListUI = withStyles(styles)(withRouter(SeasonsList));
 const SeasonsListWithData = compose(
-    graphql(Seasons_List, {
+    graphql(SeasonsQuery, {
         name: "seasons",
         options: { variables: { programId: "5a26828bf37263b3e436a2d7" } },
     }),

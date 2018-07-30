@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-import { Season_Query } from "../queries/ProgramList";
+import { SeasonQuery } from "../queries/ProgramList";
 import { ISeason } from "../utils/structs";
 
 const styles = (theme) => ({
@@ -16,7 +16,7 @@ const styles = (theme) => ({
 
 const SeasonHeader = ({ programId, id, classes }) => {
     return (
-        <Query query={Season_Query} variables={{ programId, id }}>
+        <Query query={SeasonQuery} ssr={false} variables={{ programId, id }}>
             {({ loading, error, data }) => {
                 if (loading) { return null; }
                 if (error) {

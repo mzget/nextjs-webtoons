@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 // here we create a query opearation
-export const List_QUERY = gql`
+export const ListQUERY = gql`
 query programs {
     lists {
       _id
@@ -12,7 +12,7 @@ query programs {
     }
 }`;
 
-export const Contents_QUERY = gql`query contents($programId: String!, $seasonNo : Int) {
+export const ContentsQUERY = gql`query contents($programId: String!, $seasonNo : Int) {
   contents(programId: $programId, seasonNo: $seasonNo) {
     name {
       th
@@ -27,7 +27,7 @@ export const Contents_QUERY = gql`query contents($programId: String!, $seasonNo 
   }
 }`;
 
-export const Content_QUERY = gql`
+export const ContentQUERY = gql`
 query content($episode : Int!) {
   content(episode: $episode) {
     _id
@@ -46,7 +46,7 @@ query content($episode : Int!) {
   }
 }`;
 
-export const Seasons_List = gql`
+export const SeasonsQuery = gql`
 query seasons($programId : String!) {
   seasons(programId: $programId) {
     _id
@@ -64,7 +64,7 @@ query seasons($programId : String!) {
 }
 `;
 
-export const Season_Query = gql`
+export const SeasonQuery = gql`
 query season($programId : String!, $id: Int!) {
   season(programId: $programId, id: $id) {
     no

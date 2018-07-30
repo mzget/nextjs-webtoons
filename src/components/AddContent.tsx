@@ -1,9 +1,11 @@
 import * as React from "react";
+import { Query } from "react-apollo";
 import TextField from "@material-ui/core/TextField";
 import { withStyles, StyleRulesCallback } from "@material-ui/core/styles";
 import { grey, common } from "@material-ui/core/colors";
 
 import { getScreen, SMALL, XSMALL } from "../utils/responsiveHelper";
+import { ListQUERY } from "../queries/ProgramList";
 
 const contentDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
 const styles = (theme) => ({
@@ -24,30 +26,53 @@ const styles = (theme) => ({
         width: `${contentDiv}`,
         backgroundColor: common.white,
     },
+    formControl: {
+        margin: theme.spacing.unit,
+        minWidth: 120,
+    },
 });
 
 interface IAddContentProps {
     name: string;
     programId: string;
 }
-const currencies = [
-    {
-        value: "USD",
-        label: "$",
-    },
-    {
-        value: "EUR",
-        label: "€",
-    },
-    {
-        value: "BTC",
-        label: "฿",
-    },
-    {
-        value: "JPY",
-        label: "¥",
-    },
-];
+
+const ProgramsComp = ({ classes, value, handleChange }) => (
+    <Query query={ListQUERY} >
+        {
+            ({ loading, error, data }) => {
+                if (loading) { return null; }
+                if (error) { return `Error!: ${error}`; }
+
+                const lists = data.lists;
+
+                return (
+                    <TextField label="select-programId"
+                        select
+                        className={classes.textField}
+                        value={value}
+                        onChange={handleChange("programId")}
+                        SelectProps={{
+                            native: true,
+                            MenuProps: {
+                                className: classes.menu,
+                            },
+                        }}
+                        margin="normal"
+                    >
+                        <option value="" />
+                        {lists.map((option) => (
+                            <option key={option._id} value={option._id}>
+                                {option.name.en}
+                            </option>
+                        ))}
+                    </TextField>
+                );
+            }
+        }
+    </Query>
+);
+
 class AddContent extends React.Component<any, IAddContentProps> {
     event; constructor(props) {
         super(props);
@@ -56,10 +81,15 @@ class AddContent extends React.Component<any, IAddContentProps> {
             name: "",
             programId: "",
         };
+
+        this.handleChange.bind(this);
     }
 
     handleChange = (name) => (event) => {
         // test
+        console.log(name, event.target.value);
+        // @ts-ignore
+        this.setState({ [name]: event.target.value });
     }
 
     render() {
@@ -136,27 +166,7 @@ class AddContent extends React.Component<any, IAddContentProps> {
                         className={classes.textField}
                         margin="normal"
                     />
-                    <TextField
-                        id="select-programId"
-                        select
-                        label="select-programId"
-                        className={classes.textField}
-                        value={this.state.programId}
-                        onChange={this.handleChange("programId")}
-                        SelectProps={{
-                            native: true,
-                            MenuProps: {
-                                className: classes.menu,
-                            },
-                        }}
-                        margin="normal"
-                    >
-                        {currencies.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </TextField>
+                    <ProgramsComp {...this.props} value={this.state.programId} handleChange={this.handleChange} />
                     <TextField
                         id="full-width"
                         label="Src"

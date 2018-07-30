@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import { Contents_QUERY } from "../queries/ProgramList";
+import { ContentsQUERY } from "../queries/ProgramList";
 import { IContent, IRouteProps } from "../utils/structs";
 
 import SeasonHeader from "./SeasonHeader";
@@ -28,7 +28,7 @@ interface ISeasonPageProps extends IRouteProps {
 
 const ContentQuery = (props: ISeasonPageProps, { programId, seasonNo }) => {
     return (
-        <Query query={Contents_QUERY} variables={{ programId, seasonNo }}>
+        <Query query={ContentsQUERY} ssr={false} variables={{ programId, seasonNo }}>
             {
                 ({ loading, error, data }) => {
                     if (loading) { return null; }

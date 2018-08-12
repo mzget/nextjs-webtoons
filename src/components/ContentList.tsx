@@ -35,8 +35,9 @@ const ContentQuery = (props: ISeasonPageProps, { programId, seasonNo }) => {
                     if (error) {
                         return `Error!: ${error.message}`;
                     }
-
+                    console.log("ContentList", data);
                     const contents = data.contents as IContent[];
+
                     return (
                         <List component="nav">
                             {

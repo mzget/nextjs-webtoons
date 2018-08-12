@@ -23,14 +23,14 @@ class Home extends React.Component<any> {
         const { classes } = this.props;
 
         return (
-            <React.Fragment>
+            <div>
                 <AppBarUI />
                 <div className={classes.root}>
                     <Flexbox flexDirection="row" justifyContent="center">
                         <Programs />
                     </Flexbox>
                 </div>
-            </React.Fragment >
+            </div>
         );
     }
 }

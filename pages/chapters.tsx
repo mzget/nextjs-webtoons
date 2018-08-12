@@ -30,18 +30,20 @@ function Chapters(props: { router: RouterProps, classes }) {
     console.log("Chapters page", getScreen());
 
     return (
-        <React.Fragment>
+        <div>
             <AppBarUI />
             <div className={classes.root}>
                 <Flexbox flexDirection="row" justifyContent="center" >
                     <div id="Chapters" className={classes.contentBox}>
-                        <ContentList router={props.router} onClickContent={(season: string, ep: string) =>
-                            onClickItem(props.router, { season, ep })}
+                        <ContentList
+                            router={props.router}
+                            onClickContent={(season: string, ep: string) =>
+                                onClickItem(props.router, { season, ep })}
                         />
                     </div>
                 </Flexbox >
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 

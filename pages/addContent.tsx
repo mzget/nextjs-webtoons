@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles";
 import withMaterial from "../src/lib/withMaterial";
 import { styles } from "../src/styles/pageStyle";
 import WithData from "../src/lib/withData";
-
+import { EnhancedContextStore } from "../src/contextStore/storeContext";
 import { AppBarUI } from "../src/components/AppBar";
 import { AddContentComp } from "../src/components/AddContent";
 
@@ -16,14 +16,14 @@ class AddContent extends React.Component<any, any> {
         console.log("Add content page: ", this.props);
 
         return (
-            <div>
+            <EnhancedContextStore>
                 <AppBarUI />
                 <div className={classes.root}>
                     <Row justifyContent="center" >
                         <AddContentComp />
                     </Row>
                 </div>
-            </div>
+            </EnhancedContextStore>
         );
     }
 }

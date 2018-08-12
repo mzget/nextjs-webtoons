@@ -28,10 +28,10 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
           {
             (process.env.NODE_ENV === "production") ?
-              <React.Fragment>
+              <>
                 <meta name="propeller" content="1ca9c2781a277fe80eca4eb04c67365b" />
                 <script type="text/javascript" src="//go.oclaserver.com/apu.php?zoneid=1769415"></script>
-              </React.Fragment> : null
+              </> : null
           }
         </Head>
         <body>
@@ -76,14 +76,14 @@ MyDocument.getInitialProps = (ctx) => {
     ...page,
     pageContext,
     styles: (
-      <React.Fragment>
+      <>
         <style
           id="jss-server-side"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
         />
         {flush() || null}
-      </React.Fragment>
+      </>
     ),
   };
 };

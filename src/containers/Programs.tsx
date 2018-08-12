@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
 import { getScreen, XSMALL } from "../utils/responsiveHelper";
-import { ListQUERY } from "../queries/ProgramList";
+import { ProgramListQUERY } from "../queries/ProgramList";
 
 import SeasonsList from "../components/SeasonsList";
 
@@ -49,6 +49,4 @@ class Programs extends React.Component<IProgramsProps, any> {
 }
 
 const ProgramsUI = withStyles(styles)(Programs);
-export default compose(
-    graphql(ListQUERY),
-)(ProgramsUI);
+export default compose(graphql(ProgramListQUERY))(ProgramsUI);

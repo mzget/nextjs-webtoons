@@ -33,30 +33,35 @@ const RenderTextField = ({ classes, value, lists, handleChange }:
         </TextField>
     );
 
-export const SeasonsComp = ({ classes, value, programId, handleChange }) => (
-    <div>
-        {
-            (programId === "") ?
-                RenderTextField({ classes, value, null, handleChange })
-                :
-                <Query query={SeasonsQuery} variables={{ programId }}>
-                    {
-                        ({ loading, error, data }) => {
-                            if (loading) {
-                                return (
-                                    <Typography variant="subheading" gutterBottom>
-                                        Loading...
-                                    </Typography>
-                                );
-                            }
-                            if (error) { return `Error!: ${error}`; }
+export class SeasonsComp extends React.Component<{ classes, value, programId, handleChange }, any> {
+    render() {
+        const { classes, value, programId, handleChange } = this.props;
 
-                            console.log("Seasons", data);
-                            const lists = data.seasons;
-                            return RenderTextField({ classes, value, lists, handleChange });
-                        }
-                    }
-                </Query>
-        }
-    </div>
-);
+        return (
+            <div>
+                {
+                    (programId === "") ?
+                        RenderTextField({ classes, value, null, handleChange })
+                        :
+                        <Query query={SeasonsQuery} variables={{ programId }}>
+                            {({ loading, error, data }) => {
+                                if (loading) {
+                                    return (
+                                        <Typography variant="subheading" gutterBottom>
+                                            Loading...
+                                        </Typography>
+                                    );
+                                }
+                                if (error) { return `Error!: ${error}`; }
+
+                                console.log("Seasons", data);
+                                const lists = data.seasons;
+                                return RenderTextField({ classes, value, lists, handleChange });
+                            }
+                            }
+                        </Query>
+                }
+            </div>
+        );
+    }
+}

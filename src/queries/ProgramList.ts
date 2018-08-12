@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 // here we create a query opearation
-export const ListQUERY = gql`
+export const ProgramListQUERY = gql`
 query programs {
     lists {
       _id

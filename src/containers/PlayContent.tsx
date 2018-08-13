@@ -2,7 +2,7 @@ import * as React from "react";
 import { graphql, compose } from "react-apollo";
 import { withRouter } from "next/router";
 
-import { ContentQUERY } from "../queries/ProgramList";
+import { ContentQUERY } from "../gqls/ProgramList";
 import { IContent, IRouteProps } from "../utils/structs";
 
 import SeasonHeader from "../components/SeasonHeader";

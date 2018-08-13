@@ -7,7 +7,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import { SeasonsQuery } from "../queries/ProgramList";
+import { SeasonsQuery } from "../gqls/ProgramList";
 import { ISeason, IRouteProps, ISeasonsProps } from "../utils/structs";
 
 interface ICompProps extends ISeasonsProps, IRouteProps {

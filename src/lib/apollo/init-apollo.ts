@@ -10,6 +10,8 @@ if (!process.browser) {
   global.fetch = fetch;
 }
 
+const endPoint = (process.env.NODE_ENV === "production") ?
+  "https://awesome-barcode.appspot.com/api/graphql" : "http://localhost:8080/api/graphql";
 // http://localhost:8080/api/graphql
 // https://awesome-barcode.appspot.com/api/graphql
 function create(initialState) {
@@ -18,7 +20,7 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: "https://awesome-barcode.appspot.com/api/graphql", // Server URL (must be absolute)
+      uri: endPoint, // Server URL (must be absolute)
       credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
     }),
     cache: new InMemoryCache().restore(initialState || {}),

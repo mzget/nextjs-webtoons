@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 
 import { getScreen, XSMALL } from "../utils/responsiveHelper";
-import { ProgramListQUERY } from "../queries/ProgramList";
+import { ProgramListQUERY } from "../gqls/ProgramList";
 
 import SeasonsList from "../components/SeasonsList";
 

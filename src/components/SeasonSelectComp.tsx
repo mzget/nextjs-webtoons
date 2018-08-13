@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
-import { SeasonsQuery } from "../queries/ProgramList";
+import { SeasonsQuery } from "../gqls/ProgramList";
 
 const RenderTextField = ({ classes, value, lists, handleChange }:
     { classes: any, value: any, lists: any[], handleChange: any }) => (

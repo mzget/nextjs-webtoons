@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import TextField from "@material-ui/core/TextField";
 import StoreContext, { IStore } from "../contextStore/storeContext";
 import { selectProgram } from "../actions/storeActions";
-import { ProgramListQUERY } from "../queries/ProgramList";
+import { ProgramListQUERY } from "../gqls/ProgramList";
 
 export class ProgramsSelectComp extends React.Component<any, any> {
     render() {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Query } from "react-apollo";
+import { Mutation } from "react-apollo";
 import TextField from "@material-ui/core/TextField";
 import { withStyles, StyleRulesCallback } from "@material-ui/core/styles";
 import { grey, common } from "@material-ui/core/colors";
@@ -9,8 +9,8 @@ import Flexbox from "flexbox-react";
 import { getScreen, SMALL, XSMALL } from "../utils/responsiveHelper";
 import { ProgramsSelectComp } from "./ProgramsSelectComp";
 import { SeasonsComp } from "./SeasonSelectComp";
-import StoreContext, { IStore } from "../contextStore/storeContext";
 import { WithStore } from "../contextStore/withStore";
+import { UPDATE_CONTENT } from "../gqls/mutateData";
 
 const contentDiv = (getScreen().appWidth <= XSMALL) ? "100%" : `${XSMALL}px`;
 const styles = (theme) => ({
@@ -40,24 +40,6 @@ const styles = (theme) => ({
     },
 });
 
-// mutation{
-//     content(
-//       fields : {
-//           epNo: 197,
-//           epName: {
-//               th: "ยอดกุ๊กซันจิ! แสดงฝีมือในโรงอาหารกองทัพเรือ!",
-//           },
-//         src: "https://firebasestorage.googleapis.com/v0/b/awesome-barcode.appspot.com/o/OnePiece-7%2FOne%20Piece%20%E0%B8%A7%E0%B8%B1%E0%B8%99%E0%B8%9E%E0%B8%B5%E0%B8%8A%20%E0%B8%95%E0%B8%AD%E0%B8%99%E0%B8%97%E0%B8%B5%E0%B9%88%20197%20%5BHD%5D.mp4?alt=media&token=ea1e4219-86d6-4f17-9021-a90ef542a01b"
-//         seasonId: "5a269ecbf37263b3e436c4e6"
-//         programId: "5a26828bf37263b3e436a2d7"
-//         name: {
-//           th : "วันพีช"
-//           en: "One Piece"
-//         }
-//     }
-//     )
-//   }
-
 interface IAddContentProps {
     epNo: number;
     epName: { th: string };
@@ -84,8 +66,9 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
         this.handleChange = this.handleChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
-    onSubmit() {
+    onSubmit = (fx) => () => {
         console.log(this.state);
+        fx(({ variables: { fields: this.state } }));
     }
     handleChange = (name) => (event) => {
         if (name === "epName") {
@@ -167,10 +150,22 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
                             onChange={this.handleChange("src")}
                         />
                     </form>
-                    <Button variant="outlined" color="primary" className={classes.button}
-                        onClick={this.onSubmit}>
-                        Summit
-                    </Button>
+                    <Mutation mutation={UPDATE_CONTENT} >
+                        {(content, { loading, error }) => {
+                            if (error) { console.warn(error); }
+                            return (
+                                <div>
+                                    <Button variant="outlined" color="primary"
+                                        className={classes.button}
+                                        onClick={this.onSubmit(content)}>
+                                        Summit
+                                </Button>
+                                    {loading && <p>Loading...</p>}
+                                    {error && <p>{error.message}</p>}
+                                </div>
+                            );
+                        }}
+                    </Mutation>
                 </Flexbox>
             </div>
         );

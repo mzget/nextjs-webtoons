@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
-import { SeasonQuery } from "../queries/ProgramList";
+import { SeasonQuery } from "../gqls/ProgramList";
 import { ISeason } from "../utils/structs";
 
 const styles = (theme) => ({

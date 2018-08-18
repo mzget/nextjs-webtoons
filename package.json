@@ -27,7 +27,6 @@
     "react": "^16.4.2",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.2",
-    "simple-flexbox": "^1.2.0",
     "typeface-roboto": "^0.0.54"
   },
   "devDependencies": {

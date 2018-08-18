@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 
 import withMaterial from "../src/lib/withMaterial";
 import { getScreen } from "../src/utils/responsiveHelper";
-import Programs from "../src/containers/Programs";
+import Programs from "../src/components/Programs";
 import { AppBarUI } from "../src/components/AppBar";
 import { styles } from "../src/styles/pageStyle";
 

@@ -5,7 +5,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-import { ContentsQUERY } from "../queries/ProgramList";
+import { ContentsQUERY } from "../gqls/ProgramList";
 import { IContent, IRouteProps } from "../utils/structs";
 
 import SeasonHeader from "./SeasonHeader";

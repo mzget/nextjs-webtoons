@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Row } from "simple-flexbox";
+import Flexbox from "flexbox-react";
 import { withStyles } from "@material-ui/core/styles";
 
 import withMaterial from "../src/lib/withMaterial";
@@ -19,9 +19,9 @@ class AddContent extends React.Component<any, any> {
             <EnhancedContextStore>
                 <AppBarUI />
                 <div className={classes.root}>
-                    <Row justifyContent="center" >
+                    <Flexbox justifyContent="center" flexDirection="row" >
                         <AddContentComp />
-                    </Row>
+                    </Flexbox>
                 </div>
             </EnhancedContextStore>
         );

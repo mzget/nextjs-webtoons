@@ -67,15 +67,16 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
         this.onSubmit = this.onSubmit.bind(this);
     }
     onSubmit = (fx) => () => {
-        console.log(this.state);
         fx(({ variables: { fields: this.state } }));
+
+        this.setState({ epName: { th: "" }, src: "" });
     }
     handleChange = (name) => (event) => {
         if (name === "epName") {
             this.setState({ epName: { th: event.target.value } }, () => console.info(this.state));
         } else {
             // @ts-ignore
-            this.setState({ [name]: event.target.value }, () => console.info(this.state));
+            this.setState({ [name]: event.target.value });
         }
     }
     shouldComponentUpdate(nextProps, nextState) {
@@ -138,6 +139,7 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
                             helperText="Thai EP-name"
                             margin="normal"
                             fullWidth
+                            value={this.state.epName.th}
                             onChange={this.handleChange("epName")}
                         />
                         <TextField
@@ -147,6 +149,7 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
                             helperText="Video src"
                             fullWidth
                             margin="normal"
+                            value={this.state.src}
                             onChange={this.handleChange("src")}
                         />
                     </form>
@@ -154,15 +157,17 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
                         {(content, { loading, error }) => {
                             if (error) { console.warn(error); }
                             return (
-                                <div>
-                                    <Button variant="outlined" color="primary"
+                                <>
+                                    <Button
+                                        variant="outlined"
+                                        color="primary"
                                         className={classes.button}
                                         onClick={this.onSubmit(content)}>
                                         Summit
-                                </Button>
+                                    </Button>
                                     {loading && <p>Loading...</p>}
                                     {error && <p>{error.message}</p>}
-                                </div>
+                                </>
                             );
                         }}
                     </Mutation>
@@ -172,4 +177,4 @@ class AddContent extends React.Component<{ selectProgram, updateState, classes }
     }
 }
 
-export const AddContentComp = WithStore(["selectProgram"])(withStyles(styles as StyleRulesCallback)(AddContent));
+export const AddContentComp = WithStore(["selectProgram"])(withStyles(styles)(AddContent));

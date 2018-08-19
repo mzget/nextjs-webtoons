@@ -12,6 +12,7 @@ class MyDocument extends Document {
       <html lang="en" dir="ltr">
         <Head>
           <title>all-animes.appspot.com</title>
+          <meta name="Description" content="One Piece, วันพีซ, ดูการตูน, ดุวันพีซ, ดู one piece, ดูการตูนวันพีซ "></meta>
           <meta charSet="utf-8" />
           {/* Use minimum-scale=1 to enable GPU rasterization */}
           <meta
